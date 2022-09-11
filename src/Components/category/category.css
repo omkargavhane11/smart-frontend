@@ -1,0 +1,27 @@
+.category_wrapper_div {
+  display: flex;
+  padding: 10px 0px;
+}
+
+.category_wrapper {
+  height: max-content;
+  min-width: 200px;
+  color: white;
+  border-radius: 5px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+}
+
+.category_heading {
+  height: 50px;
+  /* padding: 0px 10px; */
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.category_image {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}

@@ -1,0 +1,121 @@
+.single_product_display{
+    display: flex;
+    flex-direction: column;
+}
+.productDisplayContainer{
+    height: calc(100vh-50px);
+    width: 100vw;
+    display: flex;
+}
+.imageDisplayCont{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 10px;
+}
+.displayImage{
+    height: 400px;
+    width: 400px;
+    object-fit: contain;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    
+}
+.productDisplayWrapper{
+    height: calc(100vh-50px);
+    width: 100vw;
+    display: flex;
+    /* border:1px solid red; */
+    align-items: center;
+    justify-content: center; 
+}
+.productInfoWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.imageDisplayCont{
+    flex:1;
+}
+.productInfoCont{
+    flex:1;
+    display: flex;
+    /* border:1px solid red; */
+    align-items: center;
+    justify-content: center;
+}
+.productInfo{
+    font-size: 22px;
+}
+.buy_add{
+    display: flex;
+    flex-direction: column;
+}
+.product_price{
+    font-size: 20px;
+}
+.btn{
+    width: 150px;
+    height: 30px;
+}
+.backIcon{
+    display: none;
+    position: absolute;
+    top:10px;
+    z-index: 9999;
+    left:10px;
+}
+
+@media only screen and (max-width:400px){
+    .productDisplayWrapper{
+        height: calc(100vh-50px);
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        /* border:1px solid red; */
+        align-items: center;
+        justify-content: center; 
+    }
+    .imageDisplayCont{
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        padding: 0px;
+        position:relative;
+    }
+    .productInfoCont{
+        flex:1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:10px 10px 0px 10px;
+    }
+    .backIcon{
+        display: block;
+        position: absolute;
+        top:10px;
+        z-index: 9999;
+        left:10px;
+    }
+    .buy_add{
+        width:100%;
+        display: flex;
+        /* flex-direction: row; */
+    }
+    .btn{
+        width: 90vw !important;
+        height: 40px;
+        padding: 0px 10px;
+        font-size: 20px;
+    }
+    .product_price{
+        font-size: 15px;
+    }
+    .product_price_discount{
+        font-size: 14px;
+    }
+    .discountValue{
+        font-size: 14px;
+    }
+    
+}

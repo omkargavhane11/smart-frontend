@@ -1,0 +1,32 @@
+.orderProduct {
+  height: calc(100vh-50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 50px;
+}
+.orderProductItem {
+  display: flex;
+  width: 400px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+}
+.order_product_image {
+  height: 150px;
+  width: 150px;
+}
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.Generated,
+.inProcess {
+  background-color: rgb(238, 238, 133);
+  width: max-content;
+  padding: 2px 4px;
+  border-radius: 5px;
+  color: rgb(73, 72, 72);
+}

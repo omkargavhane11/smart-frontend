@@ -67,7 +67,7 @@ const Checkout = () => {
 
       {!isOrderPlaced && (
         <div className="checkoutContainer">
-          <div className="address_box">
+          {/* <div className="address_box">
             <div className="address_box_wrapper">
               <div className="input_item">
                 <label htmlFor="name-add">Name</label>
@@ -128,6 +128,41 @@ const Checkout = () => {
                 Update Address
               </button>
             </div>
+          </div> */}
+          <div className="checkout_map_items">
+            {products?.map((product) => (
+              <div className="cart_product" key={product._id}>
+                <div className="cart_product_container">
+                  <div className="cart_product_img_container">
+                    <img
+                      src={product.url}
+                      alt="product image"
+                      className="cart_productImage"
+                    />
+                  </div>
+                  <div className="cart_productBottom">
+                    <div className="cart_product_description">
+                      {product.description}
+                    </div>
+                    <div className="cart_product_price">
+                      ₹ {product.price}/ {product.unit}
+                    </div>
+                    <div className="quantity">
+                      Order Size - {product.order_quantity} {product.unit}
+                    </div>
+                    <div className="order_value">
+                      Order price - ₹ {product.order_quantity * product.price}
+                    </div>
+                    {/* <button
+                      className="cart btn"
+                      // onClick={() => handleRemoveProduct(product)}
+                    >
+                      Remove
+                    </button> */}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="checkout_products_invoice">
@@ -137,34 +172,6 @@ const Checkout = () => {
               Contact No :<div>{contactDetail}</div>
             </div>
             <div className="cart_container">
-              {products?.map((product) => (
-                <div className="cart_product" key={product._id}>
-                  <div className="cart_product_container">
-                    <div className="cart_product_img_container">
-                      <img
-                        src={product.url}
-                        alt="product image"
-                        className="cart_productImage"
-                      />
-                    </div>
-                    <div className="cart_productBottom">
-                      <div className="cart_product_description">
-                        {product.description}
-                      </div>
-                      <div className="cart_product_price">
-                        ₹ {product.price}
-                      </div>
-                      {/* <button
-                      className="cart btn"
-                      // onClick={() => handleRemoveProduct(product)}
-                    >
-                      Remove
-                    </button> */}
-                    </div>
-                  </div>
-                </div>
-              ))}
-
               {products.length > 0 && (
                 <>
                   <div className="orderBill">

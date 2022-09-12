@@ -20,7 +20,6 @@ const Home = () => {
     const res = await axios.get("http://localhost:8080/products");
     setData(res.data);
     // setFilteredData(res.data);
-    console.log(res.data);
   };
 
   useEffect(() => {

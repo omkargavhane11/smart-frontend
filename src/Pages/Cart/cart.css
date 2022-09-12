@@ -1,43 +1,175 @@
-.cart_container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:10px;
-    margin-top: 20px;
+.cart_page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  font-weight: normal;
 }
-.orderBill{
-    padding:10px;
-    border: 1px solid rgb(230, 229, 229);
-    width:340px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.cart_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
-.checkout{
-    width:360px;
-    border:none;
-    cursor: pointer;
-    color: rgb(77, 76, 75);
-    background-color: rgb(236, 203, 13);
-    border-radius: 4px;
-    height: 35px;
+.orderBill {
+  padding: 10px;
+  border: 1px solid rgb(230, 229, 229);
+  width: 440px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.orderValue{
-    font-weight: bold;
-    padding: 5px;
-    padding-right: 10px;
-    width: 30%;
-    border-radius: 4px;
-    text-align: right; 
+.checkout {
+  /* width: 360px; */
+  border: none;
+  cursor: pointer;
+  color: rgb(77, 76, 75);
+  background-color: rgb(236, 203, 13);
+  border-radius: 4px;
+  height: 35px;
+  margin: 10px 0px;
+  font-size: 16px;
 }
-.divider{
-    color: rgba(205, 207, 205, 0.833);
+.orderValue {
+  font-weight: bold;
+  padding: 5px;
+  padding-right: 10px;
+  width: 30%;
+  border-radius: 4px;
+  text-align: right;
 }
-.emptyCartDisplay{
-    display: flex;
-    flex-direction: column;
+.divider {
+  color: rgba(205, 207, 205, 0.833);
 }
-.emptyCartDisplay > img{
-    height: 350px;
+.emptyCartDisplay_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emptyCartDisplay {
+  display: flex;
+  flex-direction: column;
+}
+.emptyCartDisplay > img {
+  height: 350px;
+}
+
+.cart_left {
+  display: flex;
+  justify-content: space-around;
+}
+
+.invoice {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.invoice_item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  width: 100%;
+  background-color: #efefef;
+  padding: 10px;
+  /* border-radius: 5px; */
+}
+
+.address_details {
+  margin-top: 20px;
+  border: 1px solid lightgray;
+  color: gray;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* font-weight: 100; */
+}
+
+.order_total {
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address_box {
+  height: 100vh;
+  width: 100vw;
+  z-index: 500;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(151, 151, 151, 0.529);
+  top: 0px;
+  left: 0px;
+  margin: 0px !important;
+}
+.address_box_wrapper {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input_item {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input_item > input {
+  width: 250px;
+  background-color: #efefef;
+  font-size: 16px;
+}
+
+.address_box_wrapper > button {
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  outline: 2px solid lightgray;
+  background-color: rgb(0, 83, 128);
+  color: white;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bill {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bill_item {
+  width: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.bill_item > .key {
+  flex: 3;
+}
+
+.bill_item > .value {
+  flex: 1;
+}
+
+.address_details > div {
+  color: rgb(52, 52, 52);
 }

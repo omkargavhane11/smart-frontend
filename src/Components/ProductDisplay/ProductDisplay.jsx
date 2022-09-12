@@ -11,6 +11,7 @@ const ProductDisplay = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState("");
+  const [quantity, setQuantity] = useState("");
 
   const user = useSelector((state) => state.user.user);
 
@@ -21,6 +22,7 @@ const ProductDisplay = () => {
       `http://localhost:8080/products/${params.productId}`
     );
     setProduct(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -28,12 +30,20 @@ const ProductDisplay = () => {
   }, []);
 
   const handleAddToCart = async (item) => {
-    dispatch(addProduct(item));
+    if (quantity) {
+      dispatch(addProduct({ ...item, order_quantity: quantity }));
+    } else {
+      alert("Add quantity");
+    }
   };
 
   const handleBuy = async (product) => {
-    dispatch(addProduct(product));
-    navigate("/order/checkout");
+    if (quantity) {
+      dispatch(addProduct({ ...product, order_quantity: quantity }));
+      navigate("/cart");
+    } else {
+      alert("Add quantity");
+    }
   };
 
   return (
@@ -53,13 +63,25 @@ const ProductDisplay = () => {
               <div className="productInfo">{product.description}</div>
 
               <div className="productPrice_container">
-                <span className="product_price">₹ {product.price}</span>
+                <span className="product_price">
+                  ₹ {product.price}/ {product.unit}
+                </span>
                 <span className="product_price_discount">
-                  ₹ {Math.round(product.price * 0.8)}
+                  ₹ {Math.round(product.price * 1.2)}
                 </span>
                 <span className="discountValue">(20% off)</span>
               </div>
-
+              <div className="select_quantity">
+                <label htmlFor="">Enter quantity you like to order</label>
+                <input
+                  value={quantity}
+                  type="number"
+                  className="quantity_input"
+                  onChange={(e) => setQuantity(e.target.value)}
+                  min={1}
+                />
+                {"/Kg"}
+              </div>
               <div className="product_buttons">
                 <div className="buy_add">
                   <button

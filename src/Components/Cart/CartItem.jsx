@@ -19,6 +19,8 @@ const CartItem = ({ product }) => {
     axios.delete(`http://localhost:8080/products/${id}`);
   };
 
+  // console.log(product);
+
   const handleBuy = () => {};
 
   const handleRemoveProduct = async (item) => {
@@ -38,8 +40,14 @@ const CartItem = ({ product }) => {
         <div className="cart_productBottom">
           <div className="cart_product_description">{product.description}</div>
           <div className="cart_product_price">₹ {product.price}</div>
+          <div className="quantity">
+            Order Size - {product.order_quantity} {product.unit}
+          </div>
+          <div className="order_value">
+            Order price - ₹ {product.order_quantity * product.price}
+          </div>
           <button
-            className="cart btn"
+            className="cart_btn"
             onClick={() => handleRemoveProduct(product)}
           >
             Remove

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import { categoryData } from "../../data";
 
 const NewProductForm = ({ counter, setCounter }) => {
   const toast = useToast();
@@ -15,6 +16,17 @@ const NewProductForm = ({ counter, setCounter }) => {
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
 
+  const [category, setCategory] = useState("");
+
+  const handleCategoryChange = () => {
+    const cat_items = document.getElementsByClassName("category_option");
+    for (let i = 0; i < cat_items.length; i++) {
+      if (cat_items[i].selected) {
+        setCategory(cat_items[i].value);
+      }
+    }
+  };
+
   const handleSaveProduct = async (e) => {
     e.preventDefault();
 
@@ -25,6 +37,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     formData.append("price", price);
     formData.append("quantity", quantity);
     formData.append("unit", unit);
+    formData.append("category", category);
 
     const uploadProduct = await axios.post(
       "http://localhost:8080/products",
@@ -42,6 +55,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     setUnit("");
     setQuantity("");
     setName("");
+    setCategory(null);
 
     toast({
       title: "Added",
@@ -65,6 +79,7 @@ const NewProductForm = ({ counter, setCounter }) => {
 
   return (
     <div className="newProduct">
+      <h1>Add new product</h1>
       <form className="form" onSubmit={handleSaveProduct}>
         <div className="input">
           <label htmlFor="name" className="inputLabel">
@@ -100,6 +115,22 @@ const NewProductForm = ({ counter, setCounter }) => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
+        </div>
+        <div className="input">
+          <label htmlFor="category" className="inputLabel">
+            Category
+          </label>
+          <select
+            className="quantity"
+            id="category"
+            onChange={handleCategoryChange}
+          >
+            {categoryData.map((cat) => (
+              <option value={cat.heading} className="category_option">
+                {cat.heading}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="input">
           <label htmlFor="price" className="inputLabel">

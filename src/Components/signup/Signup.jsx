@@ -45,7 +45,7 @@ const Signup = () => {
       try {
         setLoading(true);
         const { data } = await axios.post(
-          "http://localhost:8080/user/register",
+          "https://s-mart-77.herokuapp.com/user/register",
           payload
         );
 

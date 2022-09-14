@@ -15,7 +15,7 @@ const Product = ({ product, modal, setModal }) => {
   const navigate = useNavigate();
 
   const handleDelete = async (id) => {
-    axios.delete(`http://localhost:8080/products/${id}`);
+    axios.delete(`https://s-mart-77.herokuapp.com/products/${id}`);
   };
 
   return (

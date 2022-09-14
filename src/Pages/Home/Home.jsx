@@ -22,7 +22,7 @@ const Home = () => {
   const [cat_filter, setCat_Filter] = useState(null);
 
   const productData = async () => {
-    const res = await axios.get("http://localhost:8080/products");
+    const res = await axios.get("https://s-mart-77.herokuapp.com/products");
     setData(res.data);
     setFilteredData(res.data);
   };

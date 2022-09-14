@@ -19,11 +19,11 @@ const Cart = () => {
   // const handleBuy = async (total) => {
   //   const {
   //     data: { key },
-  //   } = await axios.get("http://localhost:8080/api/getkey");
+  //   } = await axios.get("https://s-mart-77.herokuapp.com/api/getkey");
 
   //   const {
   //     data: { order },
-  //   } = await axios.post("http://localhost:8080/api/checkout", {
+  //   } = await axios.post("https://s-mart-77.herokuapp.com/api/checkout", {
   //     amount: total,
   //   });
 
@@ -35,7 +35,7 @@ const Cart = () => {
   //     description: "Test Transaction",
   //     image: "https://example.com/your_logo",
   //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //     callback_url: "http://localhost:8080/api/paymentverification",
+  //     callback_url: "https://s-mart-77.herokuapp.com/api/paymentverification",
   //     prefill: {
   //       name: "Gaurav Kumar",
   //       email: "gaurav.kumar@example.com",
@@ -65,7 +65,7 @@ const Cart = () => {
         contactNo: currentUser.contactNo,
       };
       const createOrder = await axios.post(
-        "http://localhost:8080/api/order",
+        "https://s-mart-77.herokuapp.com/api/order",
         data
       );
       console.log(createOrder.data);

@@ -39,7 +39,7 @@ const Checkout = () => {
     };
 
     const createOrder = await axios.post(
-      "http://localhost:8080/api/order",
+      "https://s-mart-77.herokuapp.com/api/order",
       data
     );
     // console.log(createOrder.data);

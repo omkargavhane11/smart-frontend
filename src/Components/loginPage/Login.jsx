@@ -37,7 +37,7 @@ const Login = () => {
         dispatch(loginStart);
         setLoading(true);
         const { data } = await axios.post(
-          "http://localhost:8080/login",
+          "https://s-mart-77.herokuapp.com/login",
           payload
         );
 

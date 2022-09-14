@@ -31,7 +31,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     formData.append("category", category);
 
     const uploadProduct = await axios.post(
-      "http://localhost:8080/products",
+      "https://s-mart-77.herokuapp.com/products",
       formData,
       {
         headers: {

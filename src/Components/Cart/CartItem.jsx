@@ -16,7 +16,7 @@ const CartItem = ({ product }) => {
 
   const handleDelete = async (id) => {
     // dispatch(removeProduct(id));
-    axios.delete(`http://localhost:8080/products/${id}`);
+    axios.delete(`https://s-mart-77.herokuapp.com/products/${id}`);
   };
 
   // console.log(product);

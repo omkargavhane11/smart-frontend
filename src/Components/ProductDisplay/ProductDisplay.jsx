@@ -19,7 +19,7 @@ const ProductDisplay = () => {
 
   const getProductData = async () => {
     const { data } = await axios.get(
-      `http://localhost:8080/products/${params.productId}`
+      `https://s-mart-77.herokuapp.com/products/${params.productId}`
     );
     setProduct(data);
   };

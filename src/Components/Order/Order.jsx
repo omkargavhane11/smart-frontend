@@ -11,7 +11,7 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
 
   const getData = async () => {
-    const data = await axios.get("http://localhost:8080/api/order");
+    const data = await axios.get("https://s-mart-77.herokuapp.com/api/order");
     console.log(data.data);
     setOrders(data.data);
   };

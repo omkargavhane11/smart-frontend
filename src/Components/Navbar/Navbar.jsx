@@ -7,14 +7,17 @@ import { useSelector } from "react-redux";
 import { Button, Badge } from "@mui/material";
 import { emptyCart } from "../../redux/cart";
 import { useDispatch } from "react-redux";
+import { logout } from "../../redux/user";
 
 const Navbar = () => {
   //
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   // redux
   const { quantity } = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.currentUser);
+
   const dispatch = useDispatch();
 
   const emptyCartProducts = () => {
@@ -31,6 +34,11 @@ const Navbar = () => {
     }
   }, [window.location.pathname]);
 
+  const handleLogout = () => {
+    dispatch(logout());
+    setOpen(false);
+    navigate("/login");
+  };
   return (
     <div className="navbar">
       <div className="navbar_left">
@@ -42,8 +50,9 @@ const Navbar = () => {
             Add new product
           </p>
         )}
+        {/* {!user && <button onClick={emptyCartProducts}>Empty Cart</button>} */}
       </div>
-      <div className="navbar_middle">
+      {/* <div className="navbar_middle">
         <SearchIcon />
         <input
           className="navbar_search"
@@ -51,8 +60,13 @@ const Navbar = () => {
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value)}
         />
-      </div>
+      </div> */}
       <div className="navbar_right">
+        {!user && (
+          <div className="login_link" onClick={() => navigate("/login")}>
+            Login
+          </div>
+        )}
         {/* <Button className="empty_cart_btn" onClick={emptyCartProducts}>Empty cart</Button> */}
         {!isOrderPage ? (
           <div className="orders" onClick={() => navigate("/orders")}>
@@ -61,12 +75,30 @@ const Navbar = () => {
         ) : (
           ""
         )}
-        <Badge badgeContent={quantity} color="error">
-          <ShoppingCartIcon
-            className="cart_icon"
-            onClick={() => navigate("/cart")}
+        {/* <Badge badgeContent={quantity} color="error"> */}
+        <ShoppingCartIcon
+          className="cart_icon"
+          onClick={() => navigate("/cart")}
+        />
+        {/* </Badge> */}
+        <div className="user_avatar">
+          <span className="username">{user?.name.split(" ")[0]}</span>
+          {/* <span className="firstname">{user}</span> */}
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-vWL06qbKx_pfPr-bFrIjw1t7y5ogYgIiNITgPVmXcHS6DSN3T793hhNAWRngBnR3dec&usqp=CAU"
+            alt="user"
+            className="user_image"
+            onClick={() => setOpen(!open)}
           />
-        </Badge>
+          {open && (
+            <div className="logout_modal">
+              {/* <div className="modal_item">Settings</div> */}
+              <div className="modal_item" onClick={handleLogout}>
+                Logout
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

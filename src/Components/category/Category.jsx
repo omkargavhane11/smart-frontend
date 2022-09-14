@@ -1,6 +1,6 @@
 import "./category.css";
 
-const Category = ({ item }) => {
+const Category = ({ item, index }) => {
   return (
     <div className="category_wrapper_div">
       <div className="category_wrapper">

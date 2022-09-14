@@ -1,10 +1,11 @@
-.App{
-    background-color: rgb(255, 255, 255);
-    min-height: 100vh;
+.App {
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+  color: gray;
 }
-.product_display_container{
-    display:flex;
-    gap:4px;
-    /* justify-content: space-between; */
-    flex-wrap: wrap;
+.product_display_container {
+  display: flex;
+  gap: 4px;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
 }

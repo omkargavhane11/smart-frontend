@@ -1,10 +1,9 @@
+import "./Order.css";
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import "./Order.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Button } from "@mui/material";
-import CartItem from "../Cart/CartItem";
+import moment from "moment";
 
 const Order = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -51,6 +50,17 @@ const Order = () => {
                   Order price - ₹{" "}
                   {product.productDetail.order_quantity *
                     product.productDetail.price}
+                </div>
+                <div className="order_date">
+                  Order Date :{" "}
+                  {moment(product.productDetail.createdAt).format("lll")}
+                </div>
+                <div className="delivery_date">
+                  Expected Delivery Before :{" "}
+                  {/* {moment(product.productDetail.createdAt).format("lll")} */}
+                  {moment(product.productDetail.createdAt)
+                    .add(4, "days")
+                    .calendar()}
                 </div>
               </div>
             </div>

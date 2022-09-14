@@ -9,7 +9,8 @@ import PaymentSuccess from "./Components/PaymentSuccess/PaymentSuccess";
 import ProductDisplay from "./Components/ProductDisplay/ProductDisplay";
 import Order from "./Components/Order/Order";
 import Checkout from "./Components/Checkout/Checkout";
-// import { ChakraProvider } from '@chakra-ui/react';
+import Login from "./Components/loginPage/Login";
+import Signup from "./Components/signup/Signup";
 
 
 function App() {
@@ -35,9 +36,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <ChakraProvider> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Signup />} />
         <Route path="/add" element={<NewProductForm />} />
         <Route path="/cart" element={<Cart />} />
         {/* <Route path="/pay" element={<PaymentGateway />} /> */}
@@ -46,7 +48,6 @@ function App() {
         <Route path="/orders" element={<Order />} />
         <Route path="/order/checkout" element={<Checkout />} />
       </Routes>
-      {/* </ChakraProvider> */}
     </div>
   );
 }

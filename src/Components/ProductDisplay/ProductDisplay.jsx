@@ -22,7 +22,6 @@ const ProductDisplay = () => {
       `http://localhost:8080/products/${params.productId}`
     );
     setProduct(data);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -80,7 +79,7 @@ const ProductDisplay = () => {
                   onChange={(e) => setQuantity(e.target.value)}
                   min={1}
                 />
-                {"/Kg"}
+                / {product.unit}
               </div>
               <div className="product_buttons">
                 <div className="buy_add">

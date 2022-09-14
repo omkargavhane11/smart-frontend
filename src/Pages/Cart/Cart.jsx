@@ -2,16 +2,20 @@ import Navbar from "../../Components/Navbar/Navbar";
 import "./cart.css";
 import { useSelector } from "react-redux";
 import CartItem from "../../Components/Cart/CartItem";
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../redux/cart";
 import { useState } from "react";
 import { updateAddress } from "../../redux/user";
+import { Button } from "@mui/material";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const { products, total } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   // const handleBuy = async (total) => {
   //   const {
   //     data: { key },
@@ -56,11 +60,10 @@ const Cart = () => {
       const data = {
         productDetail: product,
         orderTotal: total,
-        deliveryAddress: userAddress,
+        deliveryAddress: currentUser.address,
         user: currentUser,
-        contactNo: contactDetail,
+        contactNo: currentUser.contactNo,
       };
-
       const createOrder = await axios.post(
         "http://localhost:8080/api/order",
         data
@@ -70,36 +73,33 @@ const Cart = () => {
     dispatch(emptyCart());
   };
 
-  const { products, total } = useSelector((state) => state.cart);
-  const { currentUser, userAddress, contactDetail } = useSelector(
-    (state) => state.user
-  );
-  const navigate = useNavigate();
-
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pincode, setPincode] = useState("");
   const [contact, setContact] = useState("");
+  const [addOpen, setAddOpen] = useState(false);
 
   const saveaddress = () => {
     const data = `${address}, ${city}, ${state}, ${pincode}`;
     dispatch(
       updateAddress({
-        currentUser: name,
-        addressData: data,
-        contactDetail: contact,
+        currentUser: currentUser.name,
+        addressData: currentUser.address,
+        contactDetail: currentUser.contactNo,
       })
     );
 
     setAddOpen(false);
   };
 
-  const [addOpen, setAddOpen] = useState(false);
+  const handle_Add_Address = () => {
+    navigate("/login");
+  };
 
   return (
-    <>
+    <div>
       {addOpen && (
         <div className="address_box">
           <div className="address_box_wrapper">
@@ -170,47 +170,46 @@ const Cart = () => {
       <div className="cart_page">
         <Navbar />
         <div className="cart_left">
+          {products.length > 0 && (
+            <button
+              className="empty_cart"
+              onClick={() => dispatch(emptyCart())}
+            >
+              Empty Cart
+            </button>
+          )}
           <div className="cart_container">
             {products?.map((product, index) => (
               <CartItem key={index} product={product} />
             ))}
           </div>
           <div className="cart_right">
-            {products.length > 0 && (
-              <div className="address_details">
-                Address
-                <div>{currentUser}</div>
-                <div>{userAddress}</div>
-                Contact No :<div>{contactDetail}</div>
-                <button onClick={() => setAddOpen(true)}>Edit</button>
+            {/* {currentUser && (
+              <div>
+                {products.length > 0 && (
+                  <div className="address_details">
+                    <div>{currentUser}</div>
+                    Delivery Address
+                    <div>{currentUser?.address}</div>
+                    Contact No :<div>{currentUser?.contactNo}</div>
+                    <button
+                      className="edit_button"
+                      onClick={() => setAddOpen(true)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
+            )} */}
 
             <div className="invoice">
               {products.length > 0 && (
                 <>
                   <div className="orderBill">
-                    {/* {products.map((item) => (
-                      <div className="invoice_item">
-                        <span className="in_product_name">
-                          {item.description}
-                        </span>
-                        <span className="in_product_price">
-                          {item.price} / {item.unit}
-                        </span>
-                        <span>*</span>
-                        <span className="in_product_order_quantiy">
-                          {item.order_quantity} {item.unit}
-                        </span>
-                        <span>=</span>
-                        <span className="in_product_order_value_of_item">
-                          ₹ {item.price * item.order_quantity}
-                        </span>
-                      </div>
-                    ))} */}
                     <div className="bill">
                       <div className="bill_item">
-                        <span className="ordertotal_key key ">Order Total</span>
+                        <span className="ordertotal_key key">Order Total</span>
                         <span className="ordertotal value">₹ {total}</span>
                       </div>
                       <div className="bill_item">
@@ -222,14 +221,21 @@ const Cart = () => {
                       <div className="bill_item"></div>
                     </div>
                     <div className="order_total">
-                      <span className="text">Total order value</span>
-                      <span className="divider">|</span>
-                      <span className="orderValue">₹ {total}</span>
+                      <span className="order_total_key">Total order value</span>
+                      <span className="orderValue order_total_value">
+                        ₹ {total}
+                      </span>
                     </div>
                   </div>
-                  <button className="checkout" onClick={handleBuy}>
-                    Place Order
-                  </button>
+                  {currentUser ? (
+                    <button className="checkout" onClick={handleBuy}>
+                      Place Order
+                    </button>
+                  ) : (
+                    <button className="checkout" onClick={handle_Add_Address}>
+                      Add Address
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -242,18 +248,18 @@ const Cart = () => {
                 src="https://shop.millenniumbooksource.com/static/images/cart1.png"
                 alt="cart_image"
               />
-              <Button
+              <button
                 variant="contained"
                 onClick={() => navigate("/")}
                 className="continue_shopping_btn"
               >
                 Continue Shopping
-              </Button>
+              </button>
             </div>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

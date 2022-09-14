@@ -5,10 +5,12 @@
   align-items: center;
   gap: 15px;
   margin-top: 50px;
+  font-weight: normal;
+  color: rgb(77, 77, 77);
 }
 .orderProductItem {
   display: flex;
-  width: 400px;
+  /* width: 600px; */
   padding: 10px;
   border-radius: 4px;
   border: none;
@@ -16,6 +18,7 @@
 .order_product_image {
   height: 150px;
   width: 150px;
+  object-fit: contain;
 }
 .orderInfo {
   display: flex;
@@ -39,21 +42,32 @@
 .order_product {
   border: none;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  height: 150px;
-  width: 400px;
+  height: max-content;
+  width: 700px;
 }
 
 .order_product_container {
   display: flex;
   gap: 20px;
+  width: 100%;
 }
 
 .order_productImage {
   height: 150px;
-  width: 170px;
-  object-fit: cover;
+  min-width: 170px;
+  max-width: 170px;
+  object-fit: contain;
+  margin-left: -2px;
 }
 
 .order_productBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 10px;
+}
+
+.order_product_description {
+  font-weight: 500;
+  color: black;
 }

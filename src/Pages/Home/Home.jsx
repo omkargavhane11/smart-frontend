@@ -11,45 +11,66 @@ import Footer from "../../Components/footer/Footer";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  // const [filteredData, setFilteredData] = useState(data);
-
+  const [filteredData, setFilteredData] = useState(data);
+  const categoryOption = [
+    { heading: "All", image: "", id: Math.random() },
+    ...categoryData,
+  ];
   const [modal, setModal] = useState(false);
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+
+  const [cat_filter, setCat_Filter] = useState(null);
 
   const productData = async () => {
     const res = await axios.get("http://localhost:8080/products");
     setData(res.data);
-    // setFilteredData(res.data);
+    setFilteredData(res.data);
   };
 
   useEffect(() => {
     productData();
   }, []);
 
-  // const [upperPrice, setUpperPrice] = useState(null);
-  // const [lowerPrice, setLowerPrice] = useState(null);
-
   // filter function
-  // const handleChange = () => {
-  //   var updatedData = data;
-  //   if (upperPrice) {
-  //     updatedData = updatedData.filter(
-  //       (product) => product.price <= upperPrice
-  //     );
-  //     setFilteredData(updatedData);
-  //   }
-  //   if (lowerPrice) {
-  //     updatedData = updatedData.filter(
-  //       (product) => product.price >= lowerPrice
-  //     );
-  //     setFilteredData(updatedData);
-  //   }
-  // };
+  const handleChange = () => {
+    const getOptions = document.getElementsByClassName("product_category");
+    for (let i = 0; i < getOptions.length; i++) {
+      if (getOptions[i].selected) {
+        setCat_Filter(getOptions[i].value);
+      }
+    }
+  };
+
+  // filter data
+  function filter_data() {
+    let updatedData = data;
+
+    // category filter
+    if (cat_filter === "All") {
+      updatedData = data;
+      setFilteredData(updatedData);
+    } else {
+      if (cat_filter) {
+        updatedData = updatedData.filter(
+          (item) => item.category === cat_filter
+        );
+        setFilteredData(updatedData);
+      }
+    }
+
+    // search
+    // if(search !== null || search !== "") {
+    //   updatedData = updatedData.filter((item)=> {
+    //     item.description.includes(search)
+    //   }
+    // setFilteredData(updatedData);
+    // }
+  }
 
   // useEffect filter on value change of filters
-  // useEffect(() => {
-  //   handleChange();
-  // }, [upperPrice, lowerPrice]);
+  useEffect(() => {
+    filter_data();
+  }, [cat_filter]);
 
   return (
     <div className="home">
@@ -63,37 +84,50 @@ const Home = () => {
       </div>
       <div className="bottom">
         <div className="home_bottom">
-          <div className="section_heading">
+          {/* <div className="section_heading">
             Categories <ArrowRightAltIcon className="right_icon" />
           </div>
           <div className="cat_display">
             {categoryData.map((item, index) => (
               <Category key={index} item={item} />
             ))}
-          </div>
+          </div> */}
           <div className="section_heading_div">
             <div className="section_heading">Products</div>
             <div className="filter_category">
               <div className="filter_category_label">Filter by category: </div>
-              <select name="" id="">
-                {categoryData.map((cat) => (
-                  <option value={cat.heading}>{cat.heading}</option>
+              <select name="cat_option" id="cat_option" onChange={handleChange}>
+                {categoryOption.map((cat) => (
+                  <option
+                    key={cat.id}
+                    value={cat.heading}
+                    className="product_category"
+                  >
+                    {cat.heading}
+                  </option>
                 ))}
               </select>
             </div>
           </div>
           <div className="home_right">
             <div className="product_display_container">
-              {data?.map((product) => (
+              {/* {filteredData.length !== 0 && ( */}
+              {filteredData?.map((product, index) => (
                 <Product
-                  key={product._id}
+                  key={index}
                   product={product}
-                  counter={counter}
-                  setCounter={setCounter}
-                  setModal={setModal}
-                  modal={modal}
+                  // counter={counter}
+                  // setCounter={setCounter}
+                  // setModal={setModal}
+                  // modal={modal}
                 />
               ))}
+
+              {filteredData.length === 0 && (
+                <div className="no_product_to_display">
+                  {cat_filter} category products are currently not in stock.
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -24,10 +24,15 @@ const userSlice = createSlice({
         updateAddress: (state, action) => {
             state.currentUser = action.payload.currentUser;
             state.userAddress = action.payload.addressData;
-            state.contactDetail = action.payload.contactDetail;
+        },
+        logout: (state) => {
+            state.isFetching = false;
+            state.currentUser = null;
+            state.error = false;
+            state.userAddress = null;
         }
     },
 });
 
-export const { loginStart, loginSuccess, loginFailure, updateAddress } = userSlice.actions;
+export const { loginStart, loginSuccess, loginFailure, updateAddress, logout } = userSlice.actions;
 export default userSlice.reducer;

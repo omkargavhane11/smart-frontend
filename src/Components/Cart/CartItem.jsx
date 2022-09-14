@@ -41,13 +41,13 @@ const CartItem = ({ product }) => {
           <div className="cart_product_description">{product.description}</div>
           <div className="cart_product_price">₹ {product.price}</div>
           <div className="quantity">
-            Order Size - {product.order_quantity} {product.unit}
+            Quantity - {product.order_quantity} {product.unit}
           </div>
           <div className="order_value">
             Order price - ₹ {product.order_quantity * product.price}
           </div>
           <button
-            className="cart_btn"
+            className="cart_btn_remove"
             onClick={() => handleRemoveProduct(product)}
           >
             Remove

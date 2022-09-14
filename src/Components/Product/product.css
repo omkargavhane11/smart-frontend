@@ -1,5 +1,5 @@
 .product {
-  height: auto;
+  height: max-content;
   width: 220px;
   border-radius: 4px;
   cursor: pointer;
@@ -68,9 +68,9 @@
   .product {
     height: auto;
     width: calc(98.5vw / 2);
-    border-radius: 4px;
+    border-radius: 0px;
     cursor: pointer;
-    border: 1px solid rgb(228, 227, 227);
+    border: none;
     font-size: 14px;
     box-shadow: 0px 0px 1px 0px rgba(151, 151, 151, 0.46);
   }

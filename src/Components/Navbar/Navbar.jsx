@@ -45,7 +45,7 @@ const Navbar = () => {
         <p className="navbar_brand" onClick={() => navigate("/")}>
           S-Mart
         </p>
-        {!user && (
+        {user.isAdmin && (
           <p className="newProductLink link" onClick={() => navigate("/add")}>
             Add new product
           </p>

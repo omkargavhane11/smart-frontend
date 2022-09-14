@@ -86,7 +86,7 @@ const Cart = () => {
     dispatch(
       updateAddress({
         currentUser: currentUser.name,
-        addressData: currentUser.address,
+        userAddress: currentUser.address,
         contactDetail: currentUser.contactNo,
       })
     );
@@ -170,34 +170,45 @@ const Cart = () => {
       <div className="cart_page">
         <Navbar />
         <div className="cart_left">
-          {products.length > 0 && (
-            <button
-              className="empty_cart"
-              onClick={() => dispatch(emptyCart())}
-            >
-              Empty Cart
-            </button>
-          )}
           <div className="cart_container">
             {products?.map((product, index) => (
               <CartItem key={index} product={product} />
             ))}
           </div>
           <div className="cart_right">
-            {/* {currentUser && (
+            {products.length > 0 && (
+              <button
+                className="empty_cart"
+                onClick={() => dispatch(emptyCart())}
+                // onClick={() => console.log(products)}
+              >
+                Empty Cart
+              </button>
+            )}
+            {currentUser && (
               <div>
                 {products.length > 0 && (
                   <div className="address_details">
-                    <div>{currentUser}</div>
+                    <div>{currentUser?.name}</div>
                     Delivery Address
                     <div>{currentUser?.address}</div>
                     Contact No :<div>{currentUser?.contactNo}</div>
-                    <button
+                    {/* <button
                       className="edit_button"
                       onClick={() => setAddOpen(true)}
                     >
                       Edit
-                    </button>
+                    </button> */}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* {currentUser && (
+              <div>
+                {products.length > 0 && (
+                  <div className="address">
+                    I apeear when user is looged in there are items in cart
                   </div>
                 )}
               </div>
@@ -223,7 +234,7 @@ const Cart = () => {
                     <div className="order_total">
                       <span className="order_total_key">Total order value</span>
                       <span className="orderValue order_total_value">
-                        ₹ {total}
+                        ₹ {total + 50}
                       </span>
                     </div>
                   </div>

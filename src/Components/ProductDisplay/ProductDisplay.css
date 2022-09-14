@@ -1,6 +1,7 @@
 .single_product_display {
   display: flex;
   flex-direction: column;
+  font-size: 16px !important;
 }
 .productDisplayContainer {
   height: calc(100vh-50px);
@@ -15,6 +16,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
+  max-width: 40vw;
 }
 .displayImage {
   height: 400px;
@@ -41,6 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 40vw;
 }
 .productInfo {
   font-size: 22px;
@@ -65,31 +68,59 @@
 }
 
 .quantity_input {
-  height: 20px;
+  height: 25px;
   border: 2px solid lightgray;
   width: 50px;
   margin: 0px 10px;
   border-radius: 4px;
+  text-align: center;
+}
+
+.addToCart_btn {
+  border: 1px solid #337ab7;
+  color: #337ab7;
+  /* padding: 3px; */
+  border-radius: 4px;
+}
+
+.buy {
+  font-size: 16px;
+  color: gray;
 }
 
 @media only screen and (max-width: 400px) {
   .productDisplayWrapper {
     height: calc(100vh-50px);
-    width: 100vw;
+    width: 100vw !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* border: 1px solid lightgray; */
+    /* background-color: red; */
   }
   .imageDisplayCont {
+    /* background-color: green; */
+    /* border: 1px solid lightgray; */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0px;
     position: relative;
+    max-width: 100vw;
+    width: 100vw !important;
+    height: 300px;
   }
+  .displayImage {
+    height: 100%;
+    width: 100vw !important;
+    object-fit: contain;
+    border: none;
+    margin: none;
+    border-radius: 5px;
+  }
+
   .productInfoCont {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,13 +129,23 @@
   .backIcon {
     display: block;
     position: absolute;
-    top: 10px;
-    z-index: 9999;
+    top: -35px;
+    color: black;
+    z-index: 999;
     left: 10px;
+    font-size: 30px;
+    font-weight: bolder;
   }
   .buy_add {
     width: 100%;
     display: flex;
+  }
+  .addToCart_btn {
+    border: 1px solid #337ab7;
+    color: #337ab7;
+    border-radius: 4px;
+    width: 90vw !important;
+    height: 40px;
   }
   .btn {
     width: 90vw !important;

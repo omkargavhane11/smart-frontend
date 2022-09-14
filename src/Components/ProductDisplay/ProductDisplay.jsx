@@ -78,8 +78,9 @@ const ProductDisplay = () => {
                   className="quantity_input"
                   onChange={(e) => setQuantity(e.target.value)}
                   min={1}
+                  max={500}
                 />
-                / {product.unit}
+                {product.unit}
               </div>
               <div className="product_buttons">
                 <div className="buy_add">
@@ -90,7 +91,7 @@ const ProductDisplay = () => {
                     Buy
                   </button>
                   <button
-                    className="cart btn"
+                    className="addToCart_btn"
                     onClick={() => handleAddToCart(product)}
                   >
                     Add to cart

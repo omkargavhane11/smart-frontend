@@ -101,7 +101,7 @@ const Login = () => {
           </label>
         </div>
         <button
-          className="loginBtn loginBox_btn"
+          className="loginBtn"
           onClick={handleLogin}
           disabled={loading}
           id="login_btn"
@@ -112,10 +112,7 @@ const Login = () => {
             "Login"
           )}
         </button>
-        <button
-          className="signupBtn loginBox_btn"
-          onClick={() => navigate("/register")}
-        >
+        <button className="signupBtn" onClick={() => navigate("/register")}>
           Sign up
         </button>
       </div>

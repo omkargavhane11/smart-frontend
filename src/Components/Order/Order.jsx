@@ -4,14 +4,19 @@ import Navbar from "../Navbar/Navbar";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../Components/footer/Footer";
 
 const Order = () => {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   // const cart = useSelector((state) => state.cart);
   const [orders, setOrders] = useState([]);
-
+  const [cancelled, setCancelled] = useState(false);
   const getData = async () => {
-    const data = await axios.get("https://s-mart-77.herokuapp.com/api/order");
+    const data = await axios.get(
+      `https://s-mart-77.herokuapp.com/api/order/${currentUser._id}`
+    );
     console.log(data.data);
     setOrders(data.data);
   };
@@ -62,11 +67,28 @@ const Order = () => {
                     .add(4, "days")
                     .calendar()}
                 </div>
+                <div className="order_wale_buttons">
+                  {/* <button
+                    className="cancel_order"
+                    onClick={() => setCancelled(true)}
+                  >
+                    {cancelled ? "Cancelled" : "Cancel Order"}
+                  </button> */}
+                  <button
+                    className="cancel_order"
+                    onClick={() =>
+                      navigate(`/product/${product.productDetail._id}`)
+                    }
+                  >
+                    View Product
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

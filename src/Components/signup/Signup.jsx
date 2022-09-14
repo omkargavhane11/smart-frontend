@@ -140,7 +140,7 @@ const Signup = () => {
           </label>
         </div>
 
-        <button className="signupBtn loginBox_btn" onClick={handleSignup}>
+        <button className="signupBtn" onClick={handleSignup}>
           {loading === true ? (
             <CircularProgress color="inherit" className="login_loader" />
           ) : (
@@ -148,7 +148,7 @@ const Signup = () => {
           )}
         </button>
         <button
-          className="loginBtn loginBox_btn"
+          className="loginBtn"
           onClick={() => navigate("/login")}
           disabled={loading}
           id="login_btn"

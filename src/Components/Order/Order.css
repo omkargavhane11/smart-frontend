@@ -1,16 +1,15 @@
 .orderProduct {
-  height: calc(100vh-50px);
+  min-height: calc(100vh-50px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin-top: 50px;
+  margin: 50px 0px;
   font-weight: normal;
   color: rgb(77, 77, 77);
 }
 .orderProductItem {
   display: flex;
-  /* width: 600px; */
   padding: 10px;
   border-radius: 4px;
   border: none;
@@ -37,6 +36,8 @@
 .page_heading {
   margin: 35px;
   text-align: center;
+  color: black;
+  font-size: 28px;
 }
 
 .order_product {
@@ -51,16 +52,20 @@
   gap: 20px;
   width: 100%;
 }
-
+.order_product_img_container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .order_productImage {
-  height: 150px;
-  min-width: 170px;
-  max-width: 170px;
-  object-fit: contain;
+  object-fit: cover;
   margin-left: -2px;
+  max-height: 180px;
 }
 
 .order_productBottom {
+  flex: 1.5;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -70,4 +75,82 @@
 .order_product_description {
   font-weight: 500;
   color: black;
+  font-size: 22px;
+}
+
+.cancel_order {
+  background-color: #dcdcdc;
+  color: rgb(117, 117, 117);
+  width: 120px;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.order_wale_buttons {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0px;
+}
+
+@media screen and (max-width: 400px) {
+  .orderProduct {
+    height: calc(100vh-50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    margin: 10px 0px;
+    font-weight: normal;
+    color: rgb(77, 77, 77);
+    overflow-y: scroll;
+  }
+  .order_product_container {
+    display: flex;
+    gap: 10px;
+    width: 100vw;
+  }
+  .order_product_img_container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .order_product_image {
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+    margin: 10px;
+  }
+  .order_productBottom {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    padding: 10px;
+  }
+  .order_product {
+    border: none;
+    box-shadow: none;
+    height: max-content;
+    width: 100vw;
+    /* border-bottom: 4px solid #999; */
+    border-top: 1px solid #999;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    /* background-color: red; */
+  }
+  .page_heading {
+    margin: 10px;
+    text-align: center;
+    color: black;
+    font-size: 28px;
+  }
+  .order_product_description {
+    font-weight: bold;
+    color: black;
+    max-height: 100px;
+    overflow: hidden;
+    font-size: 16px;
+  }
 }

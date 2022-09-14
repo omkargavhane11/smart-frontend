@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
                 state.products.findIndex((item) => item._id === action.payload._id), 1
             );
             state.quantity -= 1;
-            state.total = Number(state.total) - Number(action.payload.price);
+            state.total = Number(state.total) - Number(action.payload.price * action.payload.order_quantity);
         },
         emptyCart: (state) => {
             state.products = [];

@@ -6,7 +6,7 @@
   gap: 10px;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 150px;
+  padding: 0px 100px;
   border-bottom: 0.5px solid lightgray;
   z-index: 400;
   color: white;
@@ -17,9 +17,8 @@
   gap: 10px;
 }
 .navbar_right {
-  /* width: 100%; */
   display: flex;
-  /* justify-content: space-between; */
+  align-items: center;
 }
 .orders {
   margin-right: 30px;
@@ -38,9 +37,28 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.quantity_badge_div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .cart_icon {
   cursor: pointer;
 }
+.quantity_badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}
+
 .navbar_brand {
   font-weight: bold;
   font-size: 18px;
@@ -61,7 +79,6 @@ input::placeholder {
   font-size: 16px;
 }
 .navbar_middle {
-  /* margin-left: -400px; */
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -132,6 +149,7 @@ input::placeholder {
     border-bottom: 0.5px solid lightgray;
     z-index: 400;
     color: white;
+    width: 100vw;
   }
   .navbar_middle {
     display: none;

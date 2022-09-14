@@ -17,7 +17,6 @@ const Home = () => {
     ...categoryData,
   ];
   const [modal, setModal] = useState(false);
-  // const [counter, setCounter] = useState(0);
 
   const [cat_filter, setCat_Filter] = useState(null);
 
@@ -111,16 +110,8 @@ const Home = () => {
           </div>
           <div className="home_right">
             <div className="product_display_container">
-              {/* {filteredData.length !== 0 && ( */}
               {filteredData?.map((product, index) => (
-                <Product
-                  key={index}
-                  product={product}
-                  // counter={counter}
-                  // setCounter={setCounter}
-                  // setModal={setModal}
-                  // modal={modal}
-                />
+                <Product key={index} product={product} />
               ))}
 
               {filteredData.length === 0 && (

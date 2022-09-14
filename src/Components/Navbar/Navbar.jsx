@@ -45,7 +45,7 @@ const Navbar = () => {
         <p className="navbar_brand" onClick={() => navigate("/")}>
           S-Mart
         </p>
-        {user.isAdmin && (
+        {user?.isAdmin && (
           <p className="newProductLink link" onClick={() => navigate("/add")}>
             Add new product
           </p>
@@ -75,12 +75,14 @@ const Navbar = () => {
         ) : (
           ""
         )}
-        {/* <Badge badgeContent={quantity} color="error"> */}
-        <ShoppingCartIcon
-          className="cart_icon"
-          onClick={() => navigate("/cart")}
-        />
-        {/* </Badge> */}
+        <div className="quantity_badge_div">
+          <ShoppingCartIcon
+            className="cart_icon"
+            onClick={() => navigate("/cart")}
+          />
+          {quantity > 0 && <span className="quantity_badge">{quantity}</span>}
+        </div>
+
         <div className="user_avatar">
           <span className="username">{user?.name.split(" ")[0]}</span>
           {/* <span className="firstname">{user}</span> */}

@@ -17,8 +17,14 @@ const Order = () => {
     const data = await axios.get(
       `https://s-mart-77.herokuapp.com/api/order/${currentUser._id}`
     );
-    console.log(data.data);
-    setOrders(data.data);
+
+    setOrders(
+      data.data.sort((p1, p2) => {
+        return new Date(p2.createdAt) - new Date(p1.createdAt);
+      })
+    );
+
+    // setOrders(data.data);
   };
 
   useEffect(() => {
@@ -28,7 +34,9 @@ const Order = () => {
   return (
     <div className="order">
       <Navbar />
-      <h1 className="page_heading">Your Orders</h1>
+      <h1 className="page_heading">
+        {!currentUser ? "Login to see your orders" : "Your Orders"}
+      </h1>
       <div className="orderProduct">
         {orders.map((product, index) => (
           <div className="order_product" key={index}>

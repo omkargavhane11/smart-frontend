@@ -9,12 +9,14 @@ import { emptyCart } from "../../redux/cart";
 import { useState } from "react";
 import { updateAddress } from "../../redux/user";
 import { Button } from "@mui/material";
+import { useToast } from "@chakra-ui/react";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const toast = useToast();
   const { products, total } = useSelector((state) => state.cart);
   const { currentUser } = useSelector((state) => state.user);
-  const navigate = useNavigate();
 
   // const handleBuy = async (total) => {
   //   const {
@@ -71,6 +73,15 @@ const Cart = () => {
       console.log(createOrder.data);
     });
     dispatch(emptyCart());
+    toast({
+      // title: "Error.",
+      description: "Order placed successfully ✅",
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+      position: "bottom",
+    });
+    navigate("/orders");
   };
 
   const [name, setName] = useState("");
@@ -231,12 +242,12 @@ const Cart = () => {
                       </div>
                       <div className="bill_item"></div>
                     </div>
-                    <div className="order_total">
-                      <span className="order_total_key">Total order value</span>
-                      <span className="orderValue order_total_value">
-                        ₹ {total + 50}
-                      </span>
-                    </div>
+                  </div>
+                  <div className="order_total">
+                    <span className="order_total_key">Total order value</span>
+                    <span className="orderValue order_total_value">
+                      ₹ {total + 50}
+                    </span>
                   </div>
                   {currentUser ? (
                     <button className="checkout" onClick={handleBuy}>

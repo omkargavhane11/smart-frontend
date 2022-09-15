@@ -70,9 +70,10 @@
     border-radius: 0px;
     font-size: 14px;
     display: flex;
-    width: 100vw !important;
+    width: 95vw !important;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
+    color: black;
   }
   .cart_product_description {
     font-size: 16px;

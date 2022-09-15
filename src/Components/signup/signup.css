@@ -18,7 +18,7 @@
 .input {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 100%;
 }
 .input > label {
   padding: 5px;
@@ -32,6 +32,9 @@
   height: 35px;
   padding-left: 10px;
   width: 100% !important;
+}
+.input > input::placeholder {
+  color: lightgray;
 }
 
 .loginBtn {

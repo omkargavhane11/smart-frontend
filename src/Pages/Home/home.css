@@ -2,13 +2,16 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 .home {
   display: flex;
   flex-direction: column;
   position: relative;
   color: gray;
+}
+.home_right {
+  min-height: 100vh;
 }
 .cat_display {
   display: flex;
@@ -99,11 +102,9 @@ option {
   .home_left {
     display: none;
   }
-  .home_right {
-    flex: 1;
-  }
   .product_display_container {
     display: flex;
+    row-gap: 10px;
     flex-wrap: wrap;
     padding: 0px;
     gap: 0px;
@@ -111,6 +112,7 @@ option {
   .home_right {
     flex: 1;
     justify-content: center;
+    min-height: 100vh;
   }
   .home_bottom {
     margin: 0px;

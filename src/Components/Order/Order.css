@@ -1,5 +1,5 @@
 .orderProduct {
-  min-height: calc(100vh-50px);
+  min-height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,7 +94,7 @@
 
 @media screen and (max-width: 400px) {
   .orderProduct {
-    height: calc(100vh-50px);
+    min-height: calc(100vh-50px);
     display: flex;
     flex-direction: column;
     align-items: center;

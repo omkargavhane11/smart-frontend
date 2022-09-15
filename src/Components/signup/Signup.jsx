@@ -17,7 +17,9 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [isPass, setIsPass] = useState(false);
 
-  const handleSignup = async () => {
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
     const payload = {
       name,
       email,
@@ -72,14 +74,14 @@ const Signup = () => {
 
   return (
     <div className="login">
-      <div className="login_wrapper">
+      <form className="login_wrapper">
         <div className="input">
           <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            placeholder="someone@example.com"
+            placeholder="John Doe"
             onChange={(e) => setName(e.target.value)}
             className="login_input"
           />
@@ -90,7 +92,7 @@ const Signup = () => {
             type="email"
             id="email"
             name="email"
-            placeholder="someone@example.com"
+            placeholder="johndoe@example.com"
             onChange={(e) => setEmail(e.target.value)}
             className="login_input"
           />
@@ -112,7 +114,8 @@ const Signup = () => {
             type="number"
             id="contactNo"
             name="contactNo"
-            placeholder="someone@example.com"
+            length="10"
+            placeholder="9191919191"
             onChange={(e) => setContactNo(e.target.value)}
             className="login_input"
           />
@@ -155,7 +158,7 @@ const Signup = () => {
         >
           Login
         </button>
-      </div>
+      </form>
     </div>
   );
 };

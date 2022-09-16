@@ -43,7 +43,7 @@ const Order = () => {
             <div className="order_product_container">
               <div className="order_product_img_container">
                 <img
-                  src={product.productDetail.url}
+                  src={product.productDetail.image}
                   alt="product image"
                   className="order_productImage"
                 />

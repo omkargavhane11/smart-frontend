@@ -54,7 +54,7 @@ const ProductDisplay = () => {
             <span className="backIcon" onClick={() => navigate("/")}>
               <ArrowBackIcon />
             </span>
-            <img src={product.url} alt="" className="displayImage" />
+            <img src={product.image} alt="" className="displayImage" />
           </div>
 
           <div className="productInfoCont">

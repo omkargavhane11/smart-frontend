@@ -5,7 +5,7 @@ import { addProduct } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Product = ({ product, modal, setModal }) => {
+const Product = ({ product }) => {
   const [added, setAdded] = useState(false);
   const [count, setCount] = useState(0);
   const [size, setSize] = useState(null);
@@ -21,7 +21,7 @@ const Product = ({ product, modal, setModal }) => {
   return (
     <div className="product">
       <img
-        src={product.url}
+        src={product.image}
         alt="product image"
         className="productImage"
         onClick={() => navigate(`/product/${product._id}`)}

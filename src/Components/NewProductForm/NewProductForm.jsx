@@ -181,6 +181,7 @@ const NewProductForm = ({ counter, setCounter }) => {
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
               accept="image/*"
+              value={file}
             />
           </div>
           <button className="saveProduct" type="submit">

@@ -135,7 +135,7 @@ const Checkout = () => {
                 <div className="cart_product_container">
                   <div className="cart_product_img_container">
                     <img
-                      src={product.url}
+                      src={product.image}
                       alt="product image"
                       className="cart_productImage"
                     />

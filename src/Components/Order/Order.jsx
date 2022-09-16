@@ -13,6 +13,7 @@ const Order = () => {
   // const cart = useSelector((state) => state.cart);
   const [orders, setOrders] = useState([]);
   const [cancelled, setCancelled] = useState(false);
+
   const getData = async () => {
     const data = await axios.get(
       `https://s-mart-77.herokuapp.com/api/order/${currentUser._id}`
@@ -23,8 +24,6 @@ const Order = () => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);
       })
     );
-    //
-    // setOrders(data.data);
   };
 
   useEffect(() => {

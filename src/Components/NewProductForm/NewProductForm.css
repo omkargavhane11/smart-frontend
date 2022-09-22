@@ -2,9 +2,9 @@
   padding: 10px 10px;
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
+  justify-content: center;
   gap: 20px;
-  width: 50%;
+  width: 70%;
 }
 
 .newProduct {
@@ -16,12 +16,14 @@
   width: 100vw;
   padding-top: 50px;
 }
+
 .newProduct > h1 {
   margin-bottom: 20px;
 }
 
-.form > button {
+.new-input > button {
   height: 30px;
+  width: 100px;
   font-size: 15px;
   border: none;
   border-radius: 4px;
@@ -30,19 +32,23 @@
   cursor: pointer;
   margin-top: 10px;
 }
+
 .backToHome {
   background-color: rgba(4, 144, 144, 0.762) !important;
+  width: 100px;
 }
 
-.input {
+.new-input {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  flex-direction: column;
-  width: 48%;
+  width: 400px;
 }
-.input > label {
+
+.new-input > label {
   width: 150px;
 }
+
 input,
 select {
   height: 35px;
@@ -50,9 +56,9 @@ select {
   width: 100%;
   border-radius: 5px;
 }
+
 textarea {
   height: 80px;
-  /* border: 2px solid black; */
   width: 100%;
   border: 1px solid lightgray;
   width: 100%;
@@ -61,4 +67,8 @@ textarea {
 
 .media {
   height: 30px;
+}
+
+input {
+  padding: 0px 10px !important;
 }

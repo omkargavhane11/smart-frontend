@@ -10,13 +10,25 @@ const NewProductForm = ({ counter, setCounter }) => {
   const toast = useToast();
   const navigate = useNavigate();
 
+  let newCategoryData = [
+    { heading: "null", id: Math.random() },
+    ...categoryData,
+  ];
+
   const [file, setFile] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
+  const [subcategory, setSubCategory] = useState(null);
+  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
+
+  const getSelectedCategoryData = categoryData.find(
+    (item) => item.heading === category
+  );
 
   const handleSaveProduct = async (e) => {
     e.preventDefault();
@@ -29,33 +41,79 @@ const NewProductForm = ({ counter, setCounter }) => {
     formData.append("quantity", quantity);
     formData.append("unit", unit);
     formData.append("category", category);
+    formData.append("subcategory", subcategory);
+    formData.append("color", color);
+    formData.append("brand", brand);
 
-    const uploadProduct = await axios.post(
-      "https://s-mart-77.herokuapp.com/products",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    if (
+      (name ||
+        file ||
+        description ||
+        price ||
+        quantity ||
+        unit ||
+        category ||
+        subcategory) !== ("" || null || undefined)
+    ) {
+      const uploadProduct = await axios.post(
+        "https://s-mart-77.herokuapp.com/products",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setFile("");
+      setDescription("");
+      setPrice("");
+      setUnit("");
+      setQuantity("");
+      setName("");
+      setCategory("");
+      setSubCategory("");
+      setColor("");
+
+      if (!uploadProduct.data.error) {
+        toast({
+          title: "Added",
+          description: "Product added successfully",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      } else {
+        toast({
+          title: "Failed",
+          description: "Failed to add Product",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
       }
-    );
 
-    setFile(null);
-    setDescription("");
-    setPrice("");
-    setUnit("");
-    setQuantity("");
-    setName("");
-    setCategory(null);
-
-    toast({
-      title: "Added",
-      description: "Product added successfully",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-      position: "top",
-    });
+      // console.log({
+      //   name,
+      //   description,
+      //   price,
+      //   unit,
+      //   quantity,
+      //   file,
+      //   category,
+      //   subcategory,
+      // });
+    } else {
+      toast({
+        title: "Failed",
+        description: "Please fill all fields",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    }
   };
 
   // unit of product
@@ -66,14 +124,29 @@ const NewProductForm = ({ counter, setCounter }) => {
         setUnit(options[i].value);
       }
     }
+    console.log(unit);
   };
 
   // select product category
-  const handleCategoryChange = () => {
+  const handleCategoryChange = async () => {
     const cat_items = document.getElementsByClassName("category_option");
     for (let i = 0; i < cat_items.length; i++) {
       if (cat_items[i].selected) {
-        setCategory(cat_items[i].value);
+        await setCategory(cat_items[i].value);
+        await console.log(category);
+      }
+    }
+  };
+
+  // select product sub category
+  const handleSubCategoryChange = () => {
+    const sub_cat_items = document.getElementsByClassName(
+      "sub_category_option"
+    );
+    for (let i = 0; i < sub_cat_items.length; i++) {
+      if (sub_cat_items[i].selected) {
+        setSubCategory(sub_cat_items[i].value);
+        console.log(subcategory);
       }
     }
   };
@@ -84,7 +157,7 @@ const NewProductForm = ({ counter, setCounter }) => {
       <div className="newProduct">
         <h1>Add new product</h1>
         <form className="form" onSubmit={handleSaveProduct}>
-          <div className="input">
+          <div className="new-input">
             <label htmlFor="name" className="inputLabel">
               Name
             </label>
@@ -96,7 +169,7 @@ const NewProductForm = ({ counter, setCounter }) => {
               value={name}
             />
           </div>
-          <div className="input">
+          <div className="new-input">
             <label htmlFor="description" className="inputLabel">
               Description
             </label>
@@ -108,7 +181,31 @@ const NewProductForm = ({ counter, setCounter }) => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className="input">
+          <div className="new-input">
+            <label htmlFor="color" className="inputLabel">
+              Color
+            </label>
+            <input
+              className="color"
+              type="text"
+              placeholder="Red"
+              onChange={(e) => setColor(e.target.value)}
+              value={color}
+            />
+          </div>
+          <div className="new-input">
+            <label htmlFor="brand" className="inputLabel">
+              brand
+            </label>
+            <input
+              className="brand"
+              type="text"
+              placeholder="Brand name"
+              onChange={(e) => setBrand(e.target.value)}
+              value={brand}
+            />
+          </div>
+          <div className="new-input">
             <label htmlFor="quantity" className="inputLabel">
               Quantity in stock
             </label>
@@ -119,23 +216,44 @@ const NewProductForm = ({ counter, setCounter }) => {
               onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
-          <div className="input">
-            <label htmlFor="category" className="inputLabel">
-              Category
-            </label>
+          <div className="new-input">
+            <label className="inputLabel">Category</label>
             <select
               className="quantity"
               id="category"
               onChange={handleCategoryChange}
             >
-              {categoryData.map((cat) => (
-                <option value={cat.heading} className="category_option">
+              {newCategoryData.map((cat) => (
+                <option
+                  key={cat.id}
+                  value={cat.heading}
+                  className="category_option"
+                  disabled={cat.heading === null}
+                >
                   {cat.heading}
                 </option>
               ))}
             </select>
           </div>
-          <div className="input">
+          <div className="new-input">
+            <label className="inputLabel">Sub Category</label>
+            <select
+              className="quantity"
+              id="subcategory"
+              onChange={handleSubCategoryChange}
+            >
+              {getSelectedCategoryData?.subCategory?.map((cat, index) => (
+                <option
+                  key={index}
+                  value={cat.heading}
+                  className="sub_category_option"
+                >
+                  {cat.heading}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="new-input">
             <label htmlFor="price" className="inputLabel">
               Price of Unit product
             </label>
@@ -146,7 +264,7 @@ const NewProductForm = ({ counter, setCounter }) => {
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
-          <div className="input">
+          <div className="new-input">
             <label htmlFor="unit_select" className="inputLabel">
               Unit
             </label>
@@ -172,7 +290,7 @@ const NewProductForm = ({ counter, setCounter }) => {
               </option>
             </select>
           </div>
-          <div className="input">
+          <div className="new-input">
             <label htmlFor="media" className="inputLabel">
               Media
             </label>
@@ -181,19 +299,21 @@ const NewProductForm = ({ counter, setCounter }) => {
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
               accept="image/*"
-              value={file}
+              // value={file}
             />
           </div>
-          <button className="saveProduct" type="submit">
-            Add
-          </button>
-          <button
-            className="backToHome"
-            type="button"
-            onClick={() => navigate("/")}
-          >
-            Home Page
-          </button>
+          <div className="new-input">
+            <button className="saveProduct" type="submit">
+              Add
+            </button>
+            <button
+              className="backToHome"
+              type="button"
+              onClick={() => console.log(subcategory)}
+            >
+              Home Page
+            </button>
+          </div>
         </form>
       </div>
     </>

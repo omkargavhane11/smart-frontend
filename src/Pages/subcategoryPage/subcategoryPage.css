@@ -1,0 +1,86 @@
+.products-container {
+  height: 100vh;
+  display: flex;
+  overflow-y: hidden;
+}
+
+.category-list-products {
+  display: flex;
+  gap: 10px;
+}
+
+.sb-container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sb-left {
+  border-right: 2px solid #d0d0d0;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  position: sticky;
+}
+
+.sb-right {
+  padding: 20px;
+  flex: 3.5;
+  overflow-y: scroll;
+}
+
+.filter-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.filter-header {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.checkbox_div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.checkbox_div > input {
+  height: 15px;
+  width: 15px;
+}
+
+.save-filter {
+  background-color: rgb(255, 187, 0);
+  padding: 3px 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.filter-body {
+  font-size: 14px;
+}
+
+.subcategory-product {
+  font-size: 20px;
+}
+
+.price-input {
+  outline: lightgray;
+  padding: 0px 5px;
+  font-size: 14px;
+}
+
+.no-products-to-display {
+  font-size: 26px;
+  text-align: center;
+}

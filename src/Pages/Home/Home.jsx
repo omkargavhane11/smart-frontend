@@ -38,6 +38,7 @@ const Home = () => {
         setCat_Filter(getOptions[i].value);
       }
     }
+    filter_data();
   };
 
   // filter data
@@ -57,41 +58,39 @@ const Home = () => {
       }
     }
 
-    // search
-    // if(search !== null || search !== "") {
-    //   updatedData = updatedData.filter((item)=> {
-    //     item.description.includes(search)
-    //   }
-    // setFilteredData(updatedData);
-    // }
+    //   // search
+    //   // if(search !== null || search !== "") {
+    //   //   updatedData = updatedData.filter((item)=> {
+    //   //     item.description.includes(search)
+    //   //   }
+    //   // setFilteredData(updatedData);
+    //   // }
   }
 
   // useEffect filter on value change of filters
-  useEffect(() => {
-    filter_data();
-  }, [cat_filter]);
+  // useEffect(() => {
+  //   filter_data();
+  // }, [cat_filter]);
 
   return (
     <div className="home">
-      {modal && (
-        <div className="product_modal_component">
-          <ProductModal modal={modal} setModal={setModal} />
-        </div>
-      )}
       <div className="home_top">
         <Navbar />
       </div>
       <div className="bottom">
         <div className="home_bottom">
-          {/* <div className="section_heading">
+          <div className="section_heading">
             Categories <ArrowRightAltIcon className="right_icon" />
           </div>
-          <div className="cat_display">
-            {categoryData.map((item, index) => (
-              <Category key={index} item={item} />
-            ))}
-          </div> */}
-          <div className="section_heading_div">
+          <div className="cat_display_container">
+            <div className="cat_display">
+              {categoryData.map((item, index) => (
+                <Category key={index} item={item} />
+              ))}
+            </div>
+          </div>
+
+          {/* <div className="section_heading_div">
             <div className="section_heading">Products</div>
             <div className="filter_category">
               <div className="filter_category_label">Filter by category: </div>
@@ -120,7 +119,7 @@ const Home = () => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
@@ -129,34 +128,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const ProductModal = ({ modal, setModal }) => {
-  return (
-    <div className="product_modal">
-      <div className="product_modal_wrapper">
-        <div className="pm_top">
-          <img src="" alt="" className="pm_top_img" />
-          <div className="pm_top_desc">
-            <div className="product_name"></div>
-            <div className="product_price"></div>
-          </div>
-        </div>
-        <div className="pm_bottom">
-          <div className="order_form">
-            <label htmlFor="select">Select Quantity</label>
-            <select className="cat_key" id="select">
-              <option value="Value">Value</option>
-              <option value="Value">Value</option>
-              <option value="Value">Value</option>
-              <option value="Value">Value</option>
-              <option value="Value"></option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <button className="close_modal_btn" onClick={() => setModal(false)}>
-        Close
-      </button>
-    </div>
-  );
-};

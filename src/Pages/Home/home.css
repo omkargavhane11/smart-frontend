@@ -9,14 +9,19 @@
   flex-direction: column;
   position: relative;
   color: gray;
+  background-color: #efefef;
 }
 .home_right {
   min-height: 100vh;
 }
+.cat_display_container {
+  /* justify-content: space-around; */
+  min-height: 100vh;
+}
 .cat_display {
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
-  overflow-x: auto;
 }
 .section_heading {
   font-size: 24px;
@@ -25,7 +30,6 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  /* color: white; */
   color: gray;
 }
 .bottom {

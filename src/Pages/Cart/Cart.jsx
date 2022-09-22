@@ -81,7 +81,7 @@ const Cart = () => {
       isClosable: true,
       position: "bottom",
     });
-    navigate("/orders");
+    // navigate("/");
   };
 
   const [name, setName] = useState("");

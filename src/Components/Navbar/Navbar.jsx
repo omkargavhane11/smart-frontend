@@ -43,7 +43,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navbar_left">
         <p className="navbar_brand" onClick={() => navigate("/")}>
-          S-Mart
+          smartbuy
         </p>
         {user?.isAdmin && (
           <p className="newProductLink link" onClick={() => navigate("/add")}>
@@ -52,7 +52,7 @@ const Navbar = () => {
         )}
         {/* {!user && <button onClick={emptyCartProducts}>Empty Cart</button>} */}
       </div>
-      {/* <div className="navbar_middle">
+      <div className="navbar_middle">
         <SearchIcon />
         <input
           className="navbar_search"
@@ -60,7 +60,13 @@ const Navbar = () => {
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value)}
         />
-      </div> */}
+        <button
+          className="nav_search_btn"
+          onClick={() => navigate(`/products/search/${search}`)}
+        >
+          Search
+        </button>
+      </div>
       <div className="navbar_right">
         {!user && (
           <div className="login_link" onClick={() => navigate("/login")}>
@@ -94,7 +100,19 @@ const Navbar = () => {
           />
           {open && (
             <div className="logout_modal">
-              {/* <div className="modal_item">Settings</div> */}
+              {user?.isAdmin && (
+                <>
+                  <div className="modal_item">Dashboard</div>
+                  <div
+                    className="modal_item"
+                    onClick={() => navigate("/store")}
+                  >
+                    My Store
+                  </div>
+                </>
+              )}
+              <div className="modal_item">Profile</div>
+
               <div className="modal_item" onClick={handleLogout}>
                 Logout
               </div>

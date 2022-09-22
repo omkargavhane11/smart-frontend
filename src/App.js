@@ -11,6 +11,12 @@ import Order from "./Components/Order/Order";
 import Checkout from "./Components/Checkout/Checkout";
 import Login from "./Components/loginPage/Login";
 import Signup from "./Components/signup/Signup";
+import CategoryPage from "./Pages/categoryPage/CategoryPage";
+import Subcategory from "./Components/subcategory/Subcategory";
+import SubcategoryPage from "./Pages/subcategoryPage/SubcategoryPage";
+import SearchResult from "./Pages/searchResultPage/SearchResult";
+import Store from "./Pages/store/Store";
+import StoreInventory from "./Pages/inventory/Inventory";
 
 
 function App() {
@@ -47,6 +53,11 @@ function App() {
         <Route path="/product/:productId" element={<ProductDisplay />} />
         <Route path="/orders" element={<Order />} />
         <Route path="/order/checkout" element={<Checkout />} />
+        <Route path="/category/:category" element={<CategoryPage />} />
+        <Route path="/category/sub/:subcategory" element={<SubcategoryPage />} />
+        <Route path="/products/search/:searchItem" element={<SearchResult />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/store/inventory" element={<StoreInventory />} />
       </Routes>
     </div>
   );

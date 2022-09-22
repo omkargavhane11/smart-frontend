@@ -16,7 +16,7 @@ const Order = () => {
 
   const getData = async () => {
     const data = await axios.get(
-      `https://s-mart-77.herokuapp.com/api/order/${currentUser._id}`
+      `https://s-mart-77.herokuapp.com/api/order/${currentUser?._id}`
     );
 
     setOrders(
@@ -73,6 +73,9 @@ const Order = () => {
                   {moment(product.productDetail.createdAt)
                     .add(4, "days")
                     .calendar()}
+                </div>
+                <div className="orderStatus">
+                  Order Status : {product.status}
                 </div>
                 <div className="order_wale_buttons">
                   {/* <button

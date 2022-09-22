@@ -1,0 +1,20 @@
+.store_inventory {
+  padding: 20px;
+  background-color: #3077bd;
+}
+
+.searchProduct {
+  display: flex;
+  gap: 10px;
+  width: 400px;
+}
+
+.searchInput {
+  padding: 5px 10px;
+}
+
+.search_label {
+  background-color: #ffb429;
+  border-radius: 4px;
+  padding: 4px;
+}

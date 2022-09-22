@@ -1,0 +1,45 @@
+.d-container {
+  min-height: 90vh;
+  padding: 30px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.d-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 200px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  background-color: #efefef;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.d-item:hover {
+  scale: 1.1;
+}
+
+.value {
+  font-size: 26px;
+}
+
+.inventory {
+  background-color: rgb(78, 125, 186);
+  font-size: 20px;
+  color: #fff;
+}

@@ -80,7 +80,7 @@
 
 .cancel_order {
   background-color: #dcdcdc;
-  color: rgb(117, 117, 117);
+  color: rgb(5, 5, 5);
   width: 120px;
   border-radius: 4px;
   padding: 4px;
@@ -90,6 +90,14 @@
   display: flex;
   gap: 20px;
   margin: 10px 0px;
+}
+
+.orderStatus {
+  background-color: rgb(14, 77, 116);
+  width: max-content;
+  padding: 2px 4px;
+  color: white;
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 400px) {

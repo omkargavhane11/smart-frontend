@@ -17,6 +17,7 @@ import SubcategoryPage from "./Pages/subcategoryPage/SubcategoryPage";
 import SearchResult from "./Pages/searchResultPage/SearchResult";
 import Store from "./Pages/store/Store";
 import StoreInventory from "./Pages/inventory/Inventory";
+import ManageOrders from "./Components/manageOrders/ManageOrders";
 
 
 function App() {
@@ -46,7 +47,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
-        <Route path="/add" element={<NewProductForm />} />
         <Route path="/cart" element={<Cart />} />
         {/* <Route path="/pay" element={<PaymentGateway />} /> */}
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
@@ -56,8 +56,12 @@ function App() {
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/category/sub/:subcategory" element={<SubcategoryPage />} />
         <Route path="/products/search/:searchItem" element={<SearchResult />} />
+
+        {/* Routes with Admin access only */}
+        <Route path="/add" element={<NewProductForm />} />
         <Route path="/store" element={<Store />} />
         <Route path="/store/inventory" element={<StoreInventory />} />
+        <Route path="/admin/orders" element={<ManageOrders />} />
       </Routes>
     </div>
   );

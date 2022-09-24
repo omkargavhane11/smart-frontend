@@ -1,14 +1,20 @@
 import "./NewProductForm.css";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
+import { CircularProgress, useToast } from "@chakra-ui/react";
 import { categoryData } from "../../data";
 import Navbar from "../Navbar/Navbar";
+import { useSelector } from "react-redux";
 
 const NewProductForm = ({ counter, setCounter }) => {
   const toast = useToast();
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!currentUser) navigate("/");
+  }, []);
 
   let newCategoryData = [
     { heading: "null", id: Math.random() },
@@ -25,6 +31,8 @@ const NewProductForm = ({ counter, setCounter }) => {
   const [subcategory, setSubCategory] = useState(null);
   const [color, setColor] = useState("");
   const [brand, setBrand] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const getSelectedCategoryData = categoryData.find(
     (item) => item.heading === category
@@ -55,6 +63,8 @@ const NewProductForm = ({ counter, setCounter }) => {
         category ||
         subcategory) !== ("" || null || undefined)
     ) {
+      setLoading(true);
+
       const uploadProduct = await axios.post(
         "https://s-mart-77.herokuapp.com/products",
         formData,
@@ -75,6 +85,8 @@ const NewProductForm = ({ counter, setCounter }) => {
       setColor("");
 
       if (!uploadProduct.data.error) {
+        setLoading(false);
+
         toast({
           title: "Added",
           description: "Product added successfully",
@@ -84,6 +96,8 @@ const NewProductForm = ({ counter, setCounter }) => {
           position: "top",
         });
       } else {
+        setLoading(false);
+
         toast({
           title: "Failed",
           description: "Failed to add Product",
@@ -105,6 +119,8 @@ const NewProductForm = ({ counter, setCounter }) => {
       //   subcategory,
       // });
     } else {
+      setLoading(false);
+
       toast({
         title: "Failed",
         description: "Please fill all fields",
@@ -304,7 +320,11 @@ const NewProductForm = ({ counter, setCounter }) => {
           </div>
           <div className="new-input">
             <button className="saveProduct" type="submit">
-              Add
+              {loading === true ? (
+                <CircularProgress color="inherit" className="login_loader" />
+              ) : (
+                "Add"
+              )}
             </button>
             <button
               className="backToHome"

@@ -1,20 +1,41 @@
 .store_inventory {
-  padding: 20px;
-  background-color: #3077bd;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchProduct {
+  background-color: #3077bd;
   display: flex;
+  justify-content: space-between;
   gap: 10px;
-  width: 400px;
+  width: 100%;
+  padding: 10px 90px;
 }
 
 .searchInput {
   padding: 5px 10px;
+  width: 400px;
 }
 
 .search_label {
   background-color: #ffb429;
   border-radius: 4px;
   padding: 4px;
+}
+
+.inventory_display {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+}
+
+.in-new {
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(216, 167, 51);
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0px 5px;
 }

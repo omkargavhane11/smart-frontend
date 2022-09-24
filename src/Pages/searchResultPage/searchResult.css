@@ -6,3 +6,16 @@
   font-size: 26px;
   text-align: center;
 }
+
+.search-container {
+  height: 92vh;
+  display: flex;
+}
+
+.sb-left {
+  flex: 1;
+}
+
+.resultsPage {
+  flex: 3.5;
+}

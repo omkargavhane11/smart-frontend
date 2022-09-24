@@ -30,9 +30,11 @@ const Product = ({ product }) => {
       <div className="productBottom">
         <p className="product_description">{product.description}</p>
         <div className="priceContainer">
-          <span className="product_price">
-            ₹ {product.price} / {product.unit}
+          <span className="product_price">₹ {product.price} </span>
+          <span className="product_price_discount">
+            ₹ {Math.round(product.price * 1.2)}
           </span>
+          <span className="discountValue">(20% off)</span>
         </div>
       </div>
     </div>

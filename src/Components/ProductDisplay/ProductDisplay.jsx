@@ -11,7 +11,7 @@ const ProductDisplay = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const user = useSelector((state) => state.user.user);
 
@@ -45,6 +45,14 @@ const ProductDisplay = () => {
     }
   };
 
+  const handleCount = (type) => {
+    if (type === "plus") {
+      setQuantity(quantity + 1);
+    } else if (type === "minus" && quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <div className="single_product_display">
       <Navbar />
@@ -62,25 +70,20 @@ const ProductDisplay = () => {
               <div className="productInfo">{product.description}</div>
 
               <div className="productPrice_container">
-                <span className="product_price">
-                  ₹ {product.price}/ {product.unit}
-                </span>
+                <span className="product_price">₹ {product.price}</span>
                 <span className="product_price_discount">
                   ₹ {Math.round(product.price * 1.2)}
                 </span>
                 <span className="discountValue">(20% off)</span>
               </div>
               <div className="select_quantity">
-                <label htmlFor="">Enter quantity you like to order</label>
-                <input
-                  value={quantity}
-                  type="number"
-                  className="quantity_input"
-                  onChange={(e) => setQuantity(e.target.value)}
-                  min={1}
-                  max={500}
-                />
-                {product.unit}
+                <label htmlFor="">Quantity</label>
+
+                <span className="count">
+                  <button onClick={() => handleCount("minus")}>-</button>
+                  <span className="quantity_input">{quantity}</span>
+                  <button onClick={() => handleCount("plus")}>+</button>
+                </span>
               </div>
               <div className="product_buttons">
                 <div className="buy_add">

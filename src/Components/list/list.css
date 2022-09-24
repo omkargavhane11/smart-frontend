@@ -1,0 +1,65 @@
+.li {
+  display: flex;
+  color: black;
+  border: 1px solid lightgrey;
+  padding: 2px;
+  height: max-content;
+  width: 60%;
+}
+
+.li-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.li-input-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.li-input-item > input {
+  width: max-content;
+}
+
+.li-input-key {
+  min-width: 15%;
+}
+
+.li-img {
+  height: 100px;
+  width: 80px;
+  object-fit: contain;
+}
+
+.li-desc {
+  width: 100%;
+}
+
+.li-desc-input {
+  min-height: 30px;
+  padding: 5px;
+}
+
+.li-btn {
+  background-color: rgb(211, 211, 211) !important;
+  width: 60px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.li-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.li-btns-edit {
+  display: flex;
+  gap: 10px;
+  margin-left: 16%;
+  margin: 5px 16%;
+}

@@ -56,6 +56,7 @@ const Cart = () => {
   // };
 
   // creating order in DB
+
   const handleBuy = async () => {
     console.log("order placed successfully ✅");
     products.forEach(async (product) => {

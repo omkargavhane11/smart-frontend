@@ -1,14 +1,18 @@
+import "./inventory.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Product from "../../Components/Product/Product";
-import "./inventory.css";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import List from "../../Components/list/List";
 
 const StoreInventory = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
   const [data, setData] = useState([]);
 
   const productData = async () => {
     const res = await axios.get("https://s-mart-77.herokuapp.com/products");
-    setData(res.data);
+    setData(res.data.productList);
     console.log(res.data);
   };
 
@@ -16,19 +20,29 @@ const StoreInventory = () => {
     productData();
   }, []);
 
+  useEffect(() => {
+    if (!currentUser) navigate("/");
+  }, []);
+
   return (
     <div className="store_inventory">
       <div className="searchProduct">
-        <input
+        <p className="navbar_brand" onClick={() => navigate("/")}>
+          smartbuy
+        </p>
+        {/* <input
           type="text"
           className="searchInput"
           placeholder="Search Product..."
         />
-        <button className="search_label">Search</button>
+        <button className="search_label">Search</button> */}
+        <button onClick={() => navigate("/add")} className="in-new">
+          New product
+        </button>
       </div>
       <div className="inventory_display">
-        {data.map((item) => (
-          <Product key={item._id} product={item} />
+        {data?.map((item) => (
+          <List key={item._id} product={item} />
         ))}
       </div>
     </div>

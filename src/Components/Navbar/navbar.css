@@ -128,7 +128,13 @@ input::placeholder {
   cursor: pointer;
   padding: 5px;
   /* border-radius: 4px; */
+  /* border-bottom: 1px solid lightgray; */
 }
+
+/* .logout_modal:last-child {
+  border-bottom: none;
+} */
+
 .modal_item:hover {
   background-color: #efefef;
 }

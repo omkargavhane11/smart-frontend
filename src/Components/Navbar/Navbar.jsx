@@ -45,14 +45,10 @@ const Navbar = () => {
         <p className="navbar_brand" onClick={() => navigate("/")}>
           smartbuy
         </p>
-        {user?.isAdmin && (
-          <p className="newProductLink link" onClick={() => navigate("/add")}>
-            Add new product
-          </p>
-        )}
+
         {/* {!user && <button onClick={emptyCartProducts}>Empty Cart</button>} */}
       </div>
-      <div className="navbar_middle">
+      {/* <div className="navbar_middle">
         <SearchIcon />
         <input
           className="navbar_search"
@@ -66,13 +62,8 @@ const Navbar = () => {
         >
           Search
         </button>
-      </div>
+      </div> */}
       <div className="navbar_right">
-        {!user && (
-          <div className="login_link" onClick={() => navigate("/login")}>
-            Login
-          </div>
-        )}
         {/* <Button className="empty_cart_btn" onClick={emptyCartProducts}>Empty cart</Button> */}
         {!isOrderPage ? (
           <div className="orders" onClick={() => navigate("/orders")}>
@@ -102,7 +93,7 @@ const Navbar = () => {
             <div className="logout_modal">
               {user?.isAdmin && (
                 <>
-                  <div className="modal_item">Dashboard</div>
+                  {/* <div className="modal_item">Dashboard</div> */}
                   <div
                     className="modal_item"
                     onClick={() => navigate("/store")}
@@ -111,11 +102,21 @@ const Navbar = () => {
                   </div>
                 </>
               )}
-              <div className="modal_item">Profile</div>
-
-              <div className="modal_item" onClick={handleLogout}>
-                Logout
-              </div>
+              {/* <div className="modal_item">Profile</div> */}
+              {user?.isAdmin && (
+                <div className="modal_item" onClick={() => navigate("/add")}>
+                  Add new product
+                </div>
+              )}
+              {user ? (
+                <div className="modal_item" onClick={handleLogout}>
+                  Logout
+                </div>
+              ) : (
+                <div className="modal_item" onClick={() => navigate("/login")}>
+                  Login
+                </div>
+              )}
             </div>
           )}
         </div>

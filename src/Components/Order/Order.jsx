@@ -51,9 +51,6 @@ const Order = () => {
                 <div className="order_product_description">
                   {product.productDetail.description}
                 </div>
-                {/* <div className="order_product_price">
-                  ₹ {product.productDetail.price}
-                </div> */}
                 <div className="quantity">
                   Order Size - {product.productDetail.order_quantity}{" "}
                   {product.productDetail.unit}
@@ -67,23 +64,22 @@ const Order = () => {
                   Order Date :{" "}
                   {moment(product.productDetail.createdAt).format("lll")}
                 </div>
-                <div className="delivery_date">
-                  Expected Delivery Before :{" "}
-                  {/* {moment(product.productDetail.createdAt).format("lll")} */}
-                  {moment(product.productDetail.createdAt)
-                    .add(4, "days")
-                    .calendar()}
-                </div>
-                <div className="orderStatus">
-                  Order Status : {product.status}
-                </div>
+                {product.status !== "Delivered" ? (
+                  <>
+                    <div className="delivery_date">
+                      Expected Delivery Before :{" "}
+                      {moment(product.productDetail.createdAt)
+                        .add(4, "days")
+                        .calendar()}
+                    </div>
+                    <div className="orderStatus">
+                      Order Status : {product.status}
+                    </div>
+                  </>
+                ) : (
+                  <div className="or-deliver">Delivered</div>
+                )}
                 <div className="order_wale_buttons">
-                  {/* <button
-                    className="cancel_order"
-                    onClick={() => setCancelled(true)}
-                  >
-                    {cancelled ? "Cancelled" : "Cancel Order"}
-                  </button> */}
                   <button
                     className="cancel_order"
                     onClick={() =>

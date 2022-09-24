@@ -9,7 +9,7 @@ import { emptyCart } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user";
 
-const Navbar = () => {
+const Navbar = ({ searchInput }) => {
   //
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   //
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchInput);
   const [isOrderPage, setOrderPage] = useState(false);
 
   useEffect(() => {
@@ -48,21 +48,26 @@ const Navbar = () => {
 
         {/* {!user && <button onClick={emptyCartProducts}>Empty Cart</button>} */}
       </div>
-      {/* <div className="navbar_middle">
+      <div className="navbar_middle">
         <SearchIcon />
         <input
           className="navbar_search"
           type="search"
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value)}
+          value={search}
         />
         <button
           className="nav_search_btn"
-          onClick={() => navigate(`/products/search/${search}`)}
+          onClick={() => {
+            if (search.length) {
+              navigate(`/products/search/${search}`);
+            }
+          }}
         >
           Search
         </button>
-      </div> */}
+      </div>
       <div className="navbar_right">
         {/* <Button className="empty_cart_btn" onClick={emptyCartProducts}>Empty cart</Button> */}
         {!isOrderPage ? (

@@ -113,11 +113,11 @@ const SubcategoryPage = () => {
                   <input
                     type="checkbox"
                     name="color"
-                    value={item._id}
+                    value={item}
                     className="color-checkbox"
                     onClick={updateFilters}
                   />
-                  <span className="colorText">{item._id}</span>
+                  <span className="colorText">{item}</span>
                 </div>
               ))}
             </div>
@@ -153,11 +153,11 @@ const SubcategoryPage = () => {
                   <input
                     type="checkbox"
                     name="brand"
-                    value={item._id}
+                    value={item}
                     className="brand-checkbox"
                     onClick={updateFilters}
                   />
-                  <span className="brandName">{item._id}</span>
+                  <span className="brandName">{item}</span>
                 </div>
               ))}
             </div>

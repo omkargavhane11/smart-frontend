@@ -3,20 +3,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
+import Product from "../../Components/Product/Product";
 
 const SearchResult = () => {
   const params = useParams();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  console.log(params.searchItem);
+  // console.log(params.searchItem);
 
   const [colorData, setColorData] = useState([]);
   const [brandData, setBrandData] = useState([]);
 
   const productData = async () => {
     const res = await axios.get(
-      "https://s-mart-77.herokuapp.com/products/search"
+      `https://s-mart-77.herokuapp.com/products/search/${params.searchItem}`
     );
     setData(res.data.productList);
     setFilteredData(res.data.productList);
@@ -55,7 +56,6 @@ const SearchResult = () => {
       );
     }
     setFilteredData(updatedData);
-    console.log(updatedData);
 
     // price filter
     if (lowerPrice) {
@@ -73,9 +73,16 @@ const SearchResult = () => {
     let brande_checked_boxes = [];
     for (let i = 0; i < brandBoxes.length; i++) {
       if (brandBoxes[i].checked) {
-        brande_checked_boxes.push(brandBoxes[i].value);
+        brande_checked_boxes.push(brandBoxes[i].value.toLowerCase());
       }
     }
+
+    if (brande_checked_boxes.length > 0) {
+      updatedData = updatedData.filter((item) =>
+        brande_checked_boxes.includes(item.brand.toLowerCase())
+      );
+    }
+    setFilteredData(updatedData);
 
     // gender filter
     let gender_boxes = document.getElementsByClassName("gender-checkbox");
@@ -93,7 +100,7 @@ const SearchResult = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar searchInput={params.searchItem} />
       <div className="search-container">
         <div className="sb-left">
           <div className="filter-item">
@@ -104,11 +111,11 @@ const SearchResult = () => {
                   <input
                     type="checkbox"
                     name="color"
-                    value={item._id}
+                    value={item}
                     className="color-checkbox"
                     onClick={updateFilters}
                   />
-                  <span className="colorText">{item._id}</span>
+                  <span className="colorText">{item}</span>
                 </div>
               ))}
             </div>
@@ -144,16 +151,16 @@ const SearchResult = () => {
                   <input
                     type="checkbox"
                     name="brand"
-                    value={item._id}
+                    value={item}
                     className="brand-checkbox"
                     onClick={updateFilters}
                   />
-                  <span className="brandName">{item._id}</span>
+                  <span className="brandName">{item}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="filter-item">
+          {/* <div className="filter-item">
             <div className="filter-header">Gender</div>
             <div className="filter-body">
               {genders?.map((item, index) => (
@@ -169,13 +176,29 @@ const SearchResult = () => {
                 </div>
               ))}
             </div>
-          </div>
-          {/* <button className="save-filter">Save Filter</button> */}
+          </div> */}
         </div>
 
         <div className="resultsPage">
           <div className="sr-page-header">
-            Showing results for "{params.searchItem}"
+            {data?.length ? data?.length : 0} results found for "
+            {params.searchItem}"
+          </div>
+
+          <div className="products-container">
+            {filteredData?.length > 0 ? (
+              <div className="category-list-products">
+                {filteredData?.map((item) => (
+                  <Product product={item} key={item._id} />
+                ))}
+              </div>
+            ) : (
+              <>
+                <div className="no-products-to-display">
+                  No products to display. Please try with another spelling.
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -15,9 +15,7 @@ const ManageOrders = () => {
   const [type, setType] = useState("all");
 
   const getData = async () => {
-    const data = await axios.get(
-      `https://s-mart-77.herokuapp.com/api/order/${currentUser?._id}`
-    );
+    const data = await axios.get(`https://s-mart-77.herokuapp.com/api/order`);
 
     setOrders(
       data.data.sort((p1, p2) => {

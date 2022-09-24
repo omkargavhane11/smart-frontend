@@ -107,17 +107,6 @@ const NewProductForm = ({ counter, setCounter }) => {
           position: "top",
         });
       }
-
-      // console.log({
-      //   name,
-      //   description,
-      //   price,
-      //   unit,
-      //   quantity,
-      //   file,
-      //   category,
-      //   subcategory,
-      // });
     } else {
       setLoading(false);
 
@@ -130,6 +119,17 @@ const NewProductForm = ({ counter, setCounter }) => {
         position: "top",
       });
     }
+
+    // console.log({
+    //   name,
+    //   description,
+    //   price,
+    //   unit,
+    //   quantity,
+    //   file,
+    //   category,
+    //   subcategory,
+    // });
   };
 
   // unit of product
@@ -171,7 +171,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     <>
       <Navbar />
       <div className="newProduct">
-        <h1>Add new product</h1>
+        <h1 className="newProduct-page-heading">Add new product</h1>
         <form className="form" onSubmit={handleSaveProduct}>
           <div className="new-input">
             <label htmlFor="name" className="inputLabel">

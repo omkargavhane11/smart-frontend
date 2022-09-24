@@ -4,14 +4,28 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  /* background-color: rgba(3, 94, 198, 0.355); */
+  color: black;
+  /* background-color: #efefef; */
 }
+
+.website-logo {
+  font-size: 55px;
+  color: rgb(255, 179, 1);
+  text-align: center;
+  margin-top: -50px;
+  cursor: pointer;
+}
+
+.website-logo:hover {
+  color: rgb(255, 225, 1);
+}
+
 .login_wrapper {
   width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
   border-radius: 5px;
   padding: 10px;
 }
@@ -19,13 +33,14 @@
   display: flex;
   flex-direction: column;
   width: 95%;
+  color: black;
 }
 .input > label {
   padding: 5px;
 }
 
 .input > input {
-  border: 1px solid lightgray;
+  border: 1px solid rgb(177, 177, 177) !important;
   outline: none;
   font-size: 16px;
   border-radius: 4px;
@@ -61,6 +76,9 @@
   display: flex;
   align-items: baseline;
 }
+.checkbox > input {
+  color: black !important;
+}
 
 #showpassword {
   text-align: left;
@@ -69,7 +87,7 @@
 }
 
 .checkbox_show {
-  color: rgb(184, 183, 183);
+  color: rgb(109, 109, 109) !important;
   margin-left: 10px;
 }
 

@@ -19,14 +19,7 @@ export const categoryData = [
         heading: "Footwear",
         image: "https://thegadgetflow.com/wp-content/uploads/2022/08/John-Candor-Shoes-Cross-Occasional-Footwear-05-1024x576.jpeg",
         // subCategory: ["Formal Shoes", "Slippers", "Sports Shoes", "Sneakers"]
-        subCategory: [{ heading: "T-shirts", image: "https://images.prismic.io/rushordertees-web/c46d32cd-469a-49a9-b175-7362171d29a7_Custom+Short+Sleeve+T-Shirt.jpg?auto=compress%2Cformat&rect=0%2C0%2C800%2C900&w=800" },
-        { heading: "Shirts", image: "https://images-eu.ssl-images-amazon.com/images/I/618Wek95laS._AC._SR360,460.jpg" },
-        { heading: "Formal Pants", image: "https://cdn13.nnnow.com/web-images/large/styles/T261WH45AL0/1610690987635/1.jpg" },
-        { heading: "Track Pants", image: "https://assets.ajio.com/medias/sys_master/root/h09/hc9/15879850328094/-473Wx593H-441031716-ltblue-MODEL.jpg" },
-        { heading: "Suits", image: "https://5.imimg.com/data5/MB/PF/MY-3693506/designer-mens-suits-500x500.jpg" },
-        { heading: "Shorts", image: "https://assets.ajio.com/medias/sys_master/root/20220623/iSqL/62b4a23faeb26921af432363/-473Wx593H-440672489-teal-MODEL.jpg" },
-        { heading: "Jacket", image: "https://m.media-amazon.com/images/I/61G1ZLzdBeS._AC_UL320_.jpg" },
-        { heading: "Jeans", image: "https://xcdn.next.co.uk/Common/Items/Default/Default/ItemImages/Search/224x336/530205.jpg" }]
+        subCategory: [{ heading: "Sneakers", image: "https://m.media-amazon.com/images/I/71u78BeE5TL._UX695_.jpg" }, { heading: "Sports shoes", image: "https://m.media-amazon.com/images/I/81ZPwcpZr3L._UX695_.jpg" }, { heading: "Running Shoes", image: "https://m.media-amazon.com/images/I/61cXzyQ-fKL._UY695_.jpg" }]
     },
     {
         id: Math.random(),

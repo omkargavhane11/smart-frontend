@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 .orders:hover {
-  color: rgb(255, 183, 0);
+  color: rgb(255, 179, 1);
 }
 .link {
   padding: 2px 4px;

@@ -67,6 +67,9 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login_wrapper">
+        <h1 className="website-logo" onClick={() => navigate("/")}>
+          smartbuy
+        </h1>
         <div className="input">
           <label htmlFor="email">Email</label>
           <input

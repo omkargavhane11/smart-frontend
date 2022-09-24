@@ -75,6 +75,9 @@ const Signup = () => {
   return (
     <div className="login">
       <form className="login_wrapper">
+        <h1 className="website-logo" onClick={() => navigate("/")}>
+          smartbuy
+        </h1>
         <div className="input">
           <label htmlFor="name">Name</label>
           <input

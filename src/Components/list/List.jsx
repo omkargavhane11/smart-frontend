@@ -1,8 +1,10 @@
 import "./list.css";
 import { useState } from "react";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 
 const List = ({ product }) => {
+  const toast = useToast();
   const [edit, setEdit] = useState(false);
 
   // product inputs
@@ -25,7 +27,7 @@ const List = ({ product }) => {
     // formData.append("color", color);
     // formData.append("brand", brand);
     try {
-      const update = await axios.put(
+      const { update } = await axios.put(
         `https://s-mart-77.herokuapp.com/products/${product._id}`,
         formData,
         {
@@ -34,6 +36,28 @@ const List = ({ product }) => {
           },
         }
       );
+
+      if (update?.modifiedCount === 1) {
+        console.log("Product details updated successfully");
+        toast({
+          title: "Success",
+          description: "Product details updated successfully",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom",
+        });
+      } else {
+        console.log("Failed to update product details");
+        toast({
+          // title: "error",
+          description: "Failed to update product details",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -55,8 +79,12 @@ const List = ({ product }) => {
   };
 
   return (
-    <div className="li">
-      <img src={product.image} alt="" className="li-img" />
+    <div className={edit ? "li edit-inventory" : "li"}>
+      <img
+        src={product.image}
+        alt=""
+        className={edit ? "li-img-edit" : "li-img"}
+      />
       {!edit ? (
         <div className="li-details">
           <div className="li-desc">{product?.description}</div>

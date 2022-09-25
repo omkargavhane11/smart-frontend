@@ -1,14 +1,11 @@
-import Navbar from "../../Components/Navbar/Navbar";
 import "./cart.css";
+import Navbar from "../../Components/Navbar/Navbar";
 import { useSelector } from "react-redux";
 import CartItem from "../../Components/Cart/CartItem";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../redux/cart";
-import { useState } from "react";
-import { updateAddress } from "../../redux/user";
-import { Button } from "@mui/material";
 import { useToast } from "@chakra-ui/react";
 
 const Cart = () => {
@@ -75,35 +72,12 @@ const Cart = () => {
     });
     dispatch(emptyCart());
     toast({
-      // title: "Error.",
       description: "Order placed successfully ✅",
       status: "info",
       duration: 3000,
       isClosable: true,
       position: "bottom",
     });
-    // navigate("/");
-  };
-
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [contact, setContact] = useState("");
-  const [addOpen, setAddOpen] = useState(false);
-
-  const saveaddress = () => {
-    const data = `${address}, ${city}, ${state}, ${pincode}`;
-    dispatch(
-      updateAddress({
-        currentUser: currentUser.name,
-        userAddress: currentUser.address,
-        contactDetail: currentUser.contactNo,
-      })
-    );
-
-    setAddOpen(false);
   };
 
   const handle_Add_Address = () => {
@@ -112,73 +86,6 @@ const Cart = () => {
 
   return (
     <div>
-      {addOpen && (
-        <div className="address_box">
-          <div className="address_box_wrapper">
-            <div className="input_item">
-              <label htmlFor="name-add">Name</label>
-              <input
-                className="name-add"
-                id="name-add"
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-            </div>
-            <div className="input_item">
-              <label htmlFor="address-add">Address</label>
-              <input
-                className="address-add"
-                id="address-add"
-                type="text"
-                onChange={(e) => setAddress(e.target.value)}
-              ></input>
-            </div>
-            <div className="input_item">
-              <label htmlFor="state-add">State</label>
-              <input
-                className="state-add"
-                id="state-add"
-                type="text"
-                onChange={(e) => setState(e.target.value)}
-              ></input>
-            </div>
-            <div className="input_item">
-              <label htmlFor="city-add">City</label>
-              <input
-                className="city-add"
-                id="city-add"
-                type="text"
-                onChange={(e) => setCity(e.target.value)}
-              ></input>
-            </div>
-            <div className="input_item">
-              <label htmlFor="pincode-add">Pincode</label>
-              <input
-                className="pincode-add"
-                id="pincode-add"
-                type="number"
-                length={6}
-                onChange={(e) => setPincode(e.target.value)}
-              ></input>
-            </div>
-            <div className="input_item">
-              <label htmlFor="Contact-number-add">Contact-number</label>
-              <input
-                className="Contact-number-add"
-                id="Contact-number-add"
-                type="number"
-                onChange={(e) => setContact(e.target.value)}
-              ></input>
-            </div>
-            <button className="save-add" onClick={saveaddress}>
-              Update Address
-            </button>
-            <button className="cancel_update" onClick={() => setAddOpen(false)}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
       <div className="cart_page">
         <Navbar />
         <div className="cart_left">
@@ -192,7 +99,6 @@ const Cart = () => {
               <button
                 className="empty_cart"
                 onClick={() => dispatch(emptyCart())}
-                // onClick={() => console.log(products)}
               >
                 Empty Cart
               </button>
@@ -205,26 +111,10 @@ const Cart = () => {
                     Delivery Address
                     <div>{currentUser?.address}</div>
                     Contact No :<div>{currentUser?.contactNo}</div>
-                    {/* <button
-                      className="edit_button"
-                      onClick={() => setAddOpen(true)}
-                    >
-                      Edit
-                    </button> */}
                   </div>
                 )}
               </div>
             )}
-
-            {/* {currentUser && (
-              <div>
-                {products.length > 0 && (
-                  <div className="address">
-                    I apeear when user is looged in there are items in cart
-                  </div>
-                )}
-              </div>
-            )} */}
 
             <div className="invoice">
               {products.length > 0 && (

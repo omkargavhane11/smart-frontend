@@ -45,6 +45,7 @@
   justify-content: center;
   max-width: 40vw;
 }
+
 .productInfo {
   font-size: 22px;
 }
@@ -52,9 +53,22 @@
   display: flex;
   flex-direction: column;
 }
-.product_price {
-  font-size: 20px;
+
+.productPrice_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 80%;
+  font-size: 18px;
 }
+
+.productPrice_container > span {
+  font-size: 18px;
+}
+
+/* .product_price {
+  font-size: 20px;
+} */
 .btn {
   width: 150px;
   height: 30px;
@@ -68,9 +82,10 @@
 }
 
 .quantity_input {
-  /* border: 0.5px solid lightgray; */
   width: 33%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 0px;
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
@@ -86,19 +101,19 @@
   justify-content: space-around;
 }
 
+.count > button {
+  cursor: pointer;
+  font-weight: bold;
+  width: 33%;
+}
+
 .select_quantity {
   display: flex;
+  align-items: center;
 }
 
 .select_quantity > label {
   margin-right: 10px;
-}
-.count > button {
-  /* font-size: 20px !important; */
-  cursor: pointer;
-  font-weight: bold;
-  width: 33%;
-  /* background-color: rgb(187, 187, 187) !important; */
 }
 
 .addToCart_btn {
@@ -109,8 +124,9 @@
 }
 
 .buy {
-  font-size: 16px;
-  color: gray;
+  font-size: 18px !important;
+  color: rgb(39, 39, 39);
+  height: 35px !important;
 }
 
 @media only screen and (max-width: 400px) {
@@ -189,5 +205,23 @@
   }
   .discountValue {
     font-size: 14px;
+  }
+  .count {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    width: 100px;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .count > button {
+    cursor: pointer;
+    font-weight: bold;
+    width: 33%;
+  }
+  .productInfo {
+    font-size: 18px;
   }
 }

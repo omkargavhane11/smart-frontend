@@ -7,6 +7,15 @@
   width: 60%;
 }
 
+.li.edit-inventory {
+  display: flex;
+  color: black;
+  border: 1px solid lightgrey;
+  padding: 2px;
+  height: max-content;
+  width: 60%;
+}
+
 .li-details {
   display: flex;
   flex-direction: column;
@@ -62,4 +71,99 @@
   gap: 10px;
   margin-left: 16%;
   margin: 5px 16%;
+}
+
+/* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
+
+/* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
+
+@media screen and (max-width: 400px) {
+  .li {
+    display: flex;
+    color: black;
+    border: 1px solid lightgray;
+    height: max-content;
+    width: 95%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .li.edit-inventory {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    border: 1px solid lightgray;
+    padding: 2px;
+    height: max-content;
+    width: 95%;
+    margin: 10px;
+  }
+
+  .li-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+  .li-input-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .li-input-item > input {
+    width: 90vw;
+  }
+
+  .li-input-key {
+    min-width: 15%;
+  }
+
+  .li-img {
+    height: 150px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .li-img-edit {
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .li-desc {
+    width: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+  }
+
+  .li-desc-input {
+    min-height: 30px;
+    padding: 5px;
+  }
+
+  .li-btn {
+    background-color: rgb(211, 211, 211) !important;
+    width: 60px;
+    padding: 2px;
+    border-radius: 5px;
+    height: 30px;
+  }
+
+  .li-btns {
+    display: flex;
+    gap: 10px;
+  }
+
+  .li-btns-edit {
+    display: flex;
+    gap: 10px;
+    margin-left: 0%;
+    margin: 10px 0px;
+  }
 }

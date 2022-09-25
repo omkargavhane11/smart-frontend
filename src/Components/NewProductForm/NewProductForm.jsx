@@ -105,6 +105,9 @@ const NewProductForm = ({ counter, setCounter }) => {
           duration: 5000,
           isClosable: true,
           position: "top",
+          // containerStyle: {
+          //   marginTop: "60px",
+          // },
         });
       }
     } else {
@@ -167,11 +170,24 @@ const NewProductForm = ({ counter, setCounter }) => {
     }
   };
 
+  // reset form details
+  const handleReset = () => {
+    setFile("");
+    setDescription("");
+    setPrice("");
+    setUnit("");
+    setQuantity("");
+    setName("");
+    setCategory("");
+    setSubCategory("");
+    setColor("");
+  };
+
   return (
     <>
       <Navbar />
       <div className="newProduct">
-        <h1 className="newProduct-page-heading">Add new product</h1>
+        <h1 className="newProduct-page-heading">NEW PRODUCT</h1>
         <form className="form" onSubmit={handleSaveProduct}>
           <div className="new-input">
             <label htmlFor="name" className="inputLabel">
@@ -289,6 +305,9 @@ const NewProductForm = ({ counter, setCounter }) => {
               id="unit_select"
               onChange={selectOptionValue}
             >
+              <option value="null" className="unit_options_value">
+                null
+              </option>
               <option value="g" className="unit_options_value">
                 g
               </option>
@@ -319,20 +338,25 @@ const NewProductForm = ({ counter, setCounter }) => {
             />
           </div>
           <div className="new-input">
-            <button className="saveProduct" type="submit">
-              {loading === true ? (
-                <CircularProgress color="inherit" className="login_loader" />
-              ) : (
-                "Add"
-              )}
-            </button>
-            <button
+            <div className="new-input-buttons">
+              <button className="backToHome" type="reset" onClick={handleReset}>
+                Reset Form
+              </button>
+              <button className="saveProduct" type="submit">
+                {loading === true ? (
+                  <CircularProgress color="inherit" className="login_loader" />
+                ) : (
+                  "Save"
+                )}
+              </button>
+              {/* <button
               className="backToHome"
               type="button"
               onClick={() => console.log(subcategory)}
-            >
+              >
               Home Page
-            </button>
+            </button> */}
+            </div>
           </div>
         </form>
       </div>

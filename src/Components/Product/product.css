@@ -80,10 +80,10 @@
   width: 45%;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 420px) {
   .product {
     height: 220px;
-    width: calc(100vw / 2);
+    width: calc(100vw / 2) !important;
     border-radius: 0px;
     cursor: pointer;
     border: 1px solid rgb(238, 238, 238);

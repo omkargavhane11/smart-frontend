@@ -8,15 +8,48 @@
   padding: 3px 5px;
   margin: 5px;
   border-radius: 3px;
-  position: absolute;
   left: 5px;
   top: 5px;
+  height: 35px;
+  align-self: flex-start;
 }
 
 .mo-topbar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: rgb(34, 31, 31);
+  width: 100%;
+}
+
+.mo-search-box {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 5px 8px;
+  width: 350px;
+  border: 1px solid rgb(51, 157, 209);
+  border-radius: 5px;
+  color: rgb(51, 157, 209);
+  height: 35px;
+  padding-right: 2px;
+  margin: 0px auto;
+}
+
+.mo-search {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-left: 10px;
+  background-color: transparent;
+}
+
+.mo-search::placeholder {
+  color: #337ab7;
+}
+
+.mo-search::-ms-value {
+  color: chocolate;
 }
 
 .mo-heading {
@@ -58,4 +91,105 @@
 
 .orderProduct.nothing-to-display {
   font-size: 30px !important;
+}
+
+@media screen and (max-width: 400px) {
+  .mo {
+    color: black;
+  }
+
+  .mo-back-to-store {
+    background-color: #337ab7;
+    color: white;
+    padding: 3px 5px;
+    margin: 5px 4px;
+    border-radius: 3px;
+    left: 5px;
+    top: 5px;
+    height: 35px;
+    align-self: flex-start;
+    width: 10%;
+  }
+
+  .mo-topbar {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: rgb(34, 31, 31);
+    width: 100%;
+  }
+
+  .mo-search-box {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px 8px;
+    width: 85%;
+    border: 1px solid rgb(51, 157, 209);
+    border-radius: 5px;
+    color: rgb(51, 157, 209);
+    height: 35px;
+    padding-right: 2px;
+    margin: 0px auto;
+  }
+
+  .mo-search {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-left: 0px;
+    background-color: transparent;
+  }
+
+  .mo-search::placeholder {
+    color: #337ab7;
+  }
+
+  .mo-search::-ms-value {
+    color: chocolate;
+  }
+
+  .mo-heading {
+    font-size: 26px;
+  }
+
+  .or-deliver {
+    color: rgb(0, 185, 0);
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .mo-filter-types {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 5px;
+    box-sizing: border-box;
+  }
+
+  .mo-filter-item {
+    border: 1px solid #337ab7;
+    color: #337ab7;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 14px !important;
+  }
+
+  .mo-filter-item-selected {
+    background-color: #337ab7;
+    border: 1px solid white;
+    color: white;
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 14px !important;
+  }
+
+  .orderProduct.nothing-to-display {
+    font-size: 30px !important;
+  }
 }

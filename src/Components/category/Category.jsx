@@ -5,7 +5,7 @@ const Category = ({ item }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="category_wrapper_div">
+    <div className="c_category_wrapper_div">
       <div className="category_wrapper">
         <div className="category_heading">{item?.heading}</div>
         <img

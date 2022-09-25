@@ -4,10 +4,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Product from "../../Components/Product/Product";
-import Subcategory from "../../Components/subcategory/Subcategory";
+// import Subcategory from "../../Components/subcategory/Subcategory";
 import Footer from "../../Components/footer/Footer";
+import { useSelector, useDispatch } from "react-redux";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import CloseIcon from "@mui/icons-material/Close";
+import { openFilter, toggleFilter } from "../../redux/helper";
 
 const SubcategoryPage = () => {
+  const isFilterOpen = useSelector((state) => state.helper.filterModalOpen);
+  const dispatch = useDispatch();
+
   const params = useParams();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -27,16 +34,17 @@ const SubcategoryPage = () => {
 
   useEffect(() => {
     productData();
+    // eslint-disable-next-line
   }, []);
 
-  const genders = ["male", "female"];
+  // const genders = ["male", "female"];
 
   // filters
   const [lowerPrice, setLowerPrice] = useState(0);
   const [upperPrice, setUpperPrice] = useState(Infinity);
-  const [colors, setColors] = useState([]);
-  const [brandsFilter, setBrandsFilter] = useState([]);
-  const [gendersFilter, setGendersFilter] = useState([]);
+  // const [colors, setColors] = useState([]);
+  // const [brandsFilter, setBrandsFilter] = useState([]);
+  // const [gendersFilter, setGendersFilter] = useState([]);
 
   const updateFilters = () => {
     let updatedData = data;
@@ -98,91 +106,106 @@ const SubcategoryPage = () => {
 
   useEffect(() => {
     updateFilters();
+    // eslint-disable-next-line
   }, [lowerPrice, upperPrice]);
+
+  const [filterOpen, setFilterOpen] = useState(false);
 
   return (
     <div>
       <Navbar />
       <div className="sb-container">
-        <div className="sb-left">
-          <div className="filter-item">
-            <div className="filter-header">Color</div>
-            <div className="filter-body">
-              {colorData?.map((item, index) => (
-                <div className="checkbox_div" key={index}>
+        <div className={filterOpen ? "sb-left active" : "sb-left"}>
+          <div className="filter-wrapper">
+            <div className="filter_top">
+              <CloseIcon
+                className="fm_close_icon"
+                onClick={() => setFilterOpen(!filterOpen)}
+              />
+            </div>
+            <div className="filter-item">
+              <div className="filter-header">Color</div>
+              <div className="filter-body">
+                {colorData?.map((item, index) => (
+                  <div className="checkbox_div" key={index}>
+                    <input
+                      type="checkbox"
+                      name="color"
+                      value={item}
+                      className="color-checkbox"
+                      onClick={updateFilters}
+                    />
+                    <span className="colorText">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="filter-item">
+              <div className="filter-header">Price</div>
+              <div className="filter-body">
+                <span className="lower-price">
+                  Lower Price{" "}
                   <input
-                    type="checkbox"
-                    name="color"
-                    value={item}
-                    className="color-checkbox"
-                    onClick={updateFilters}
+                    type="number"
+                    className="price-input"
+                    onChange={(e) => setLowerPrice(e.target.value)}
+                    value={lowerPrice}
                   />
-                  <span className="colorText">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="filter-item">
-            <div className="filter-header">Price</div>
-            <div className="filter-body">
-              <span className="lower-price">
-                Lower Price{" "}
-                <input
-                  type="number"
-                  className="price-input"
-                  onChange={(e) => setLowerPrice(e.target.value)}
-                  value={lowerPrice}
-                />
-              </span>
-              <span className="upper-price">
-                Upper Price{" "}
-                <input
-                  type="number"
-                  className="price-input"
-                  onChange={(e) => setUpperPrice(e.target.value)}
-                  value={upperPrice}
-                />
-              </span>
-            </div>
-          </div>
-          <div className="filter-item">
-            <div className="filter-header">Brand</div>
-            <div className="filter-body">
-              {brandData?.map((item, index) => (
-                <div className="checkbox_div" key={index}>
+                </span>
+                <span className="upper-price">
+                  Upper Price{" "}
                   <input
-                    type="checkbox"
-                    name="brand"
-                    value={item}
-                    className="brand-checkbox"
-                    onClick={updateFilters}
+                    type="number"
+                    className="price-input"
+                    onChange={(e) => setUpperPrice(e.target.value)}
+                    value={upperPrice}
                   />
-                  <span className="brandName">{item}</span>
-                </div>
-              ))}
+                </span>
+              </div>
             </div>
-          </div>
-          {/* <div className="filter-item">
+            <div className="filter-item">
+              <div className="filter-header">Brand</div>
+              <div className="filter-body">
+                {brandData?.map((item, index) => (
+                  <div className="checkbox_div" key={index}>
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value={item}
+                      className="brand-checkbox"
+                      onClick={updateFilters}
+                    />
+                    <span className="brandName">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* <div className="filter-item">
             <div className="filter-header">Gender</div>
             <div className="filter-body">
-              {genders.map((item, index) => (
-                <div className="checkbox_div" key={index}>
-                  <input
+            {genders.map((item, index) => (
+              <div className="checkbox_div" key={index}>
+              <input
                     type="checkbox"
                     name="brand"
                     value={item}
                     className="gender-checkbox"
                     onClick={updateFilters}
-                  />
-                  <span className="brandName">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div> */}
-          {/* <button className="save-filter">Save Filter</button> */}
+                    />
+                    <span className="brandName">{item}</span>
+                    </div>
+                    ))}
+                    </div>
+                  </div> */}
+            {/* <button className="save-filter">Save Filter</button> */}
+          </div>
         </div>
         <div className="sb-right">
           <div className="subcategory-product">
+            <FilterAltIcon
+              className="filterIcon"
+              onClick={() => setFilterOpen(!filterOpen)}
+            />
             Showing results for "{params.subcategory}"
           </div>
           <div className="products-container">
@@ -198,10 +221,9 @@ const SubcategoryPage = () => {
               </div>
             )}
           </div>
+          <Footer />
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

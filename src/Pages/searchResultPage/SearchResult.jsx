@@ -27,16 +27,17 @@ const SearchResult = () => {
 
   useEffect(() => {
     productData();
+    // eslint-disable-next-line
   }, []);
 
-  const genders = ["male", "female"];
+  // const genders = ["male", "female"];
 
   // filters
   const [lowerPrice, setLowerPrice] = useState(0);
   const [upperPrice, setUpperPrice] = useState(Infinity);
-  const [colors, setColors] = useState([]);
-  const [brandsFilter, setBrandsFilter] = useState([]);
-  const [gendersFilter, setGendersFilter] = useState([]);
+  // const [colors, setColors] = useState([]);
+  // const [brandsFilter, setBrandsFilter] = useState([]);
+  // const [gendersFilter, setGendersFilter] = useState([]);
 
   const updateFilters = () => {
     let updatedData = data;
@@ -96,6 +97,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     updateFilters();
+    // eslint-disable-next-line
   }, [lowerPrice, upperPrice]);
 
   return (

@@ -1,6 +1,6 @@
 import "./categoryPage.css";
 import { useParams } from "react-router-dom";
-import Category from "../../Components/category/Category";
+// import Category from "../../Components/category/Category";
 import { categoryData } from "../../data.js";
 import Subcategory from "../../Components/subcategory/Subcategory";
 import Navbar from "../../Components/Navbar/Navbar";

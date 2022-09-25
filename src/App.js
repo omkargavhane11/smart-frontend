@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes } from 'react-router-dom';
 import Home from "./Pages/Home/Home";
@@ -12,7 +10,6 @@ import Checkout from "./Components/Checkout/Checkout";
 import Login from "./Components/loginPage/Login";
 import Signup from "./Components/signup/Signup";
 import CategoryPage from "./Pages/categoryPage/CategoryPage";
-import Subcategory from "./Components/subcategory/Subcategory";
 import SubcategoryPage from "./Pages/subcategoryPage/SubcategoryPage";
 import SearchResult from "./Pages/searchResultPage/SearchResult";
 import Store from "./Pages/store/Store";

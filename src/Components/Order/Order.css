@@ -81,7 +81,7 @@
 .cancel_order {
   background-color: #dcdcdc;
   color: rgb(5, 5, 5);
-  /* width: 120px; */
+  width: 120px;
   border-radius: 4px;
   padding: 4px;
 }
@@ -166,5 +166,13 @@
     max-height: 100px;
     overflow: hidden;
     font-size: 16px;
+  }
+  .cancel_order {
+    background-color: #dcdcdc;
+    color: rgb(5, 5, 5);
+    width: max-content;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: 0px !important;
   }
 }

@@ -1,5 +1,11 @@
-.navbar {
+.navbar-container {
   position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.navbar {
+  position: relative;
   height: 50px;
   background-color: #337ab7;
   display: flex;
@@ -11,10 +17,21 @@
   z-index: 400;
   color: white;
 }
+.navbar_search_modal {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh !important;
+  width: 100vw !important;
+}
 .navbar_left {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.filter_icon {
+  display: none;
+  align-items: center;
 }
 .navbar_right {
   display: flex;
@@ -26,6 +43,9 @@
 }
 .orders:hover {
   color: rgb(255, 179, 1);
+}
+.modal_item.orders_small_screen {
+  display: none;
 }
 .link {
   padding: 2px 4px;
@@ -65,6 +85,7 @@
   color: rgb(242, 255, 1);
   cursor: pointer;
 }
+
 .navbar_search {
   width: 100%;
   border: none;
@@ -90,6 +111,11 @@ input::placeholder {
   height: 35px;
   padding-right: 2px;
 }
+
+.search_bar_icon {
+  display: none !important;
+}
+
 .nav_search_btn {
   background-color: white;
   color: #337ab7;
@@ -175,5 +201,36 @@ input::placeholder {
   }
   .navbar_middle {
     display: none;
+  }
+  .orders {
+    display: none;
+  }
+  .modal_item.orders_small_screen {
+    display: block;
+  }
+  .username {
+    margin-right: 10px;
+    display: none;
+  }
+  .search_bar_icon {
+    display: block !important;
+    margin: 0px;
+  }
+  .user_avatar {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+    position: relative;
+  }
+  .navbar_right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 30vw;
+  }
+  .filter_icon {
+    display: flex;
+    align-items: center;
   }
 }

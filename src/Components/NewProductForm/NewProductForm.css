@@ -26,20 +26,29 @@
   border-radius: 10px;
 }
 
-.new-input > button {
-  height: 30px;
-  width: 100px;
-  font-size: 15px;
+.new-input-buttons {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.new-input-buttons > button {
+  height: 40px;
+  width: 20vw;
+  font-size: 16px;
   border: none;
   border-radius: 4px;
-  background-color: rgba(0, 128, 128, 0.762);
+  background-color: rgb(36, 126, 195);
   color: white;
   cursor: pointer;
   margin-top: 10px;
 }
 
 .backToHome {
-  background-color: rgba(4, 144, 144, 0.762) !important;
+  background-color: rgb(36, 126, 195);
+  color: white;
   width: 100px;
 }
 
@@ -81,4 +90,99 @@ input {
 .login_loader {
   height: 20px !important;
   width: 20px !important;
+}
+
+@media screen and (max-width: 400px) {
+  .form {
+    padding: 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0px;
+    width: 100%;
+    color: black;
+  }
+
+  .newProduct {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 0px;
+  }
+
+  .newProduct-page-heading {
+    font-size: 20px;
+    color: rgb(52, 128, 195);
+    padding: 15px 0px 0px;
+    border-radius: 10px;
+  }
+
+  .backToHome {
+    background-color: rgb(36, 126, 195) !important;
+    width: 100px;
+  }
+
+  .new-input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100vw;
+  }
+
+  .new-input-buttons {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    margin: 20px 0px;
+  }
+
+  .new-input-buttons > button {
+    height: 40px;
+    width: 45vw;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(36, 126, 195);
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .new-input > label {
+    width: 90vw;
+  }
+
+  input,
+  select {
+    height: 35px;
+    border: 1px solid lightgray;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  textarea {
+    height: 80px;
+    overflow-y: scroll;
+    border: 1px solid lightgray;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px !important;
+  }
+
+  .media {
+    height: 30px;
+  }
+
+  input {
+    padding: 0px 10px !important;
+  }
+
+  .login_loader {
+    height: 20px !important;
+    width: 20px !important;
+  }
 }

@@ -1,0 +1,16 @@
+@media screen and (max-width: 400px) {
+  .ns {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(154, 154, 248);
+    color: brown !important;
+    z-index: 900;
+  }
+
+  button {
+    background-color: antiquewhite;
+    color: black;
+    height: 50px;
+    width: 100px;
+  }
+}

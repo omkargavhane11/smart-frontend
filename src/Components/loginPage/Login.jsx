@@ -2,18 +2,19 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../../redux/user";
 import { useToast } from "@chakra-ui/react";
 import { CircularProgress } from "@mui/material";
 
 const Login = () => {
   const toast = useToast();
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [isPass, setIsPass] = useState(false);
 

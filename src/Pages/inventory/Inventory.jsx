@@ -13,7 +13,6 @@ const StoreInventory = () => {
   const productData = async () => {
     const res = await axios.get("https://s-mart-77.herokuapp.com/products");
     setData(res.data.productList);
-    console.log(res.data);
   };
 
   useEffect(() => {
@@ -22,6 +21,7 @@ const StoreInventory = () => {
 
   useEffect(() => {
     if (!currentUser) navigate("/");
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -30,6 +30,9 @@ const StoreInventory = () => {
         <p className="navbar_brand" onClick={() => navigate("/")}>
           smartbuy
         </p>
+        <button className="return-dashboard" onClick={() => navigate("/store")}>
+          Dashboard
+        </button>
         {/* <input
           type="text"
           className="searchInput"

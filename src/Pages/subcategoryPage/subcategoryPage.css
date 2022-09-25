@@ -113,6 +113,14 @@
     color: black !important;
   }
 
+  /* .products-container-filter-active {
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    margin: 20px 0px;
+    color: black !important;
+  } */
+
   .category-list-products {
     display: flex;
     flex-wrap: wrap;

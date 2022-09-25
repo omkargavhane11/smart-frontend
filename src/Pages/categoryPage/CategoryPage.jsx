@@ -14,7 +14,7 @@ const CategoryPage = () => {
   return (
     <div>
       <Navbar />
-
+      <div className="section_heading">Sub Categories of {params.category}</div>
       <div className="categoryproducts">
         {category.subCategory?.map((item, index) => (
           <Subcategory key={index} item={item} />

@@ -39,7 +39,7 @@
   .sub_category_wrapper_div {
     min-width: 45vw;
     max-width: 45vw;
-    height: 250px;
+    height: max-content;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +53,7 @@
   }
 
   .sub_category_wrapper {
-    height: 250px;
+    height: 100%;
     min-width: 46vw;
     max-width: 46vw;
     color: white;
@@ -70,17 +70,18 @@
     height: auto;
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 14px;
     color: black;
   }
 
   .sub_category_image {
-    height: 220px;
+    height: 180px;
     min-width: 45vw;
     max-width: 45vw;
     object-fit: contain;
     border-radius: 5px;
     cursor: pointer;
     background-color: #fff;
+    margin-bottom: 1px;
   }
 }

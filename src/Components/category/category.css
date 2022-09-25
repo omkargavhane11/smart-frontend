@@ -69,21 +69,24 @@
   }
 
   .category_heading {
-    height: 50px;
+    height: 30px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 14px;
     color: black;
   }
 
   .category_image {
     height: 180px;
     width: 44vw;
-    object-fit: cover;
-    border-radius: 5px;
+    object-fit: contain;
+    border-radius: 0px;
     cursor: pointer;
-    background-color: rgb(184, 51, 51);
+    background-color: #efefef;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 1px;
   }
 }

@@ -166,12 +166,17 @@
   .sb-left.active {
     transition: all 0.4s ease-in-out;
     width: 100vw;
+    padding: 10px;
     font-size: 18px;
     transform: translateX(0px);
     max-height: 100vh;
     min-height: 100vh;
     background-color: rgb(255, 255, 255);
     color: black;
+  }
+
+  .filter-wrapper {
+    width: 100%;
   }
 
   .sb-right {
@@ -228,7 +233,7 @@
     outline: lightgray;
     padding: 0px 5px;
     font-size: 14px;
-    width: 80%;
+    width: 100%;
   }
 
   .no-products-to-display {

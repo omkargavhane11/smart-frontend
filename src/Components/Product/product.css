@@ -83,7 +83,7 @@
 @media only screen and (max-width: 420px) {
   .product {
     height: 220px;
-    width: calc(98.5vw / 2) !important;
+    width: calc(100vw / 2) !important;
     border-radius: 0px;
     cursor: pointer;
     border: 1px solid rgb(211, 211, 211);

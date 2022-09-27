@@ -34,9 +34,7 @@
   width: 100%;
 }
 .orderValue {
-  font-weight: bold;
-  padding: 5px;
-  padding-right: 10px;
+  font-weight: 500;
   border-radius: 4px;
 }
 .divider {
@@ -94,14 +92,9 @@
   color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 20px;
   font-weight: 400;
-}
-.order_total_key {
-  flex: 3.5;
-}
-.order_total_value {
-  flex: 1;
 }
 
 .address_box {
@@ -154,17 +147,21 @@
 
 .bill {
   width: 100%;
-  padding: 5px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-size: 16px;
 }
 
+.bill:nth-last-child() {
+  background-color: #efefef;
+  font-weight: 500;
+}
+
 .bill_item {
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .bill_item > .key {

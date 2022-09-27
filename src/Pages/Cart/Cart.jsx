@@ -122,24 +122,26 @@ const Cart = () => {
                   <div className="orderBill">
                     <div className="bill">
                       <div className="bill_item">
-                        <span className="ordertotal_key key">Order Total</span>
-                        <span className="ordertotal value">₹ {total}</span>
+                        <span className="ordertotal_key">Order Total</span>
+                        <span className="ordertotal">₹ {total}</span>
                       </div>
                       <div className="bill_item">
-                        <span className="shipping_charges ordertotal_key key">
+                        <span className="shipping_charges ordertotal_key">
                           Shipping Charges{" "}
                         </span>
-                        <span className="ordertotal value">₹ 50</span>
+                        <span className="ordertotal">₹ 50</span>
                       </div>
-                      <div className="bill_item"></div>
+                      <div className="bill_item">
+                        <span className="order_total_key">
+                          Total order value
+                        </span>
+                        <span className="orderValue order_total_value">
+                          ₹ {total + 50}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="order_total">
-                    <span className="order_total_key">Total order value</span>
-                    <span className="orderValue order_total_value">
-                      ₹ {total + 50}
-                    </span>
-                  </div>
+
                   {currentUser ? (
                     <button className="checkout" onClick={handleBuy}>
                       Place Order

@@ -19,55 +19,108 @@ export const categoryData = [
         heading: "Footwear",
         image: "https://thegadgetflow.com/wp-content/uploads/2022/08/John-Candor-Shoes-Cross-Occasional-Footwear-05-1024x576.jpeg",
         // subCategory: ["Formal Shoes", "Slippers", "Sports Shoes", "Sneakers"]
-        subCategory: [{ heading: "Sneakers", image: "https://m.media-amazon.com/images/I/71u78BeE5TL._UX695_.jpg" }, { heading: "Sports shoes", image: "https://m.media-amazon.com/images/I/81ZPwcpZr3L._UX695_.jpg" }, { heading: "Running Shoes", image: "https://m.media-amazon.com/images/I/61cXzyQ-fKL._UY695_.jpg" }]
+        subCategory: [
+            {
+                heading: "Sneakers",
+                image: "https://m.media-amazon.com/images/I/71u78BeE5TL._UX695_.jpg"
+            },
+            {
+                heading: "Sports shoes",
+                image: "https://m.media-amazon.com/images/I/81ZPwcpZr3L._UX695_.jpg"
+            },
+            {
+                heading: "Running Shoes",
+                image: "https://m.media-amazon.com/images/I/61cXzyQ-fKL._UY695_.jpg"
+            }
+        ]
     },
     {
         id: Math.random(),
         heading: "Watches",
         image: "https://imageengine.victorinox.com/medias/?context=bWFzdGVyfHJvb3R8OTc5NDF8aW1hZ2UvanBlZ3xoMjkvaGQ4LzEzNTE5MTQyNzQ4MTkwL25hdi1jYXJwZXQtd2F0LW1hdmVyaWNrLTY0MHgzNTAuanBnfDU1OGRlNzRmNjE5ZGEzNWI3MjlhN2I3ZWYxNmYzNzZhNDM0MGIwZDI4YTdmZjM0NTVlN2YwNDVlOWRiZTE1YjM",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+        subCategory: [
+            {
+                heading: "Smart Watch",
+                image: "https://cdn.shopify.com/s/files/1/0057/8938/4802/products/1bca7fb9-5f5c-42e3-930a-8a430d8a9e60_600x.png?v=1625046217"
+            }, {
+                heading: "Analog Watch ",
+                image: "https://helix-watches.com/media/catalog/product/cache/418f1337e39e3b5a226c1002bdcc3d4a/t/w/tw043hg10_px1200.jpg"
+            }
+        ]
     },
     {
         id: Math.random(),
         heading: "Bags & Luggages",
         image: "https://www.homestratosphere.com/wp-content/uploads/2018/06/luggage-types-june212018.jpg",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+        subCategory: [
+            {
+                heading: "Suitcases",
+                image: "https://m.media-amazon.com/images/I/71oTNUSNGEL._AC_UL480_FMwebp_QL65_.jpg"
+            }, {
+                heading: "Bagpacks",
+                image: "https://m.media-amazon.com/images/I/61xc9DxoLBS._AC_UL480_FMwebp_QL65_.jpg"
+            }
+        ]
     },
     {
         id: Math.random(),
         heading: "Home Decoration",
         image: "https://assets-news.housing.com/news/wp-content/uploads/2022/01/31200633/Vastu-home-decorative-items-to-bring-harmony-and-positive-energies-FB-1200x700-compressed.jpg",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+        subCategory: [
+            {
+                heading: "Curtains",
+                image: "https://m.media-amazon.com/images/I/81ZQXAE1OVL._AC_UL480_FMwebp_QL65_.jpg"
+            }, {
+                heading: "Indoor Plants",
+                image: "https://m.media-amazon.com/images/I/51goUkNZtgL._AC_UL480_FMwebp_QL65_.jpg"
+            }
+        ]
     },
     {
         id: Math.random(),
         heading: "Home Storage",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8bhs0V_bxMPvz5JSItzp_KVc_eaHeZ1J8gk5LW9t-hj4DWHqbT9tO1isQPUTOvfRMy2g&usqp=CAU",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+        subCategory: [
+            {
+                heading: "Clothes and Covers",
+                image: "https://m.media-amazon.com/images/I/71JT4+SncjL._AC_UL480_FMwebp_QL65_.jpg"
+            }, {
+                heading: "Storage Boxes",
+                image: "https://m.media-amazon.com/images/I/81yX6BsHIbL._AC_UL480_FMwebp_QL65_.jpg"
+            }
+        ]
     },
-    {
-        id: Math.random(),
-        heading: "Cookware & Dining",
-        image: "https://i5.walmartimages.com/asr/0ced251f-5838-4363-9424-ea7abe1c7cbc.ba1eb83f76db81c935b3b058637ec6a5.jpeg",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
-    },
-    {
-        id: Math.random(),
-        heading: "Makeup Beauty Products",
-        image: "https://thumbs.dreamstime.com/b/make-up-bag-cosmetic-beauty-products-make-up-bag-cosmetic-beauty-products-women-s-secrets-cosmetics-perfume-brushes-143303525.jpg",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
-    },
+    // {
+    //     id: Math.random(),
+    //     heading: "Cookware & Dining",
+    //     image: "https://i5.walmartimages.com/asr/0ced251f-5838-4363-9424-ea7abe1c7cbc.ba1eb83f76db81c935b3b058637ec6a5.jpeg",
+    //     subCategory: [
+    //         {
+    //             heading: "Cooking Pan",
+    //             image: "https://m.media-amazon.com/images/I/61tWP7NIdwL._SX679_.jpg"
+    //         }, {
+    //             heading: "Analog Watch ",
+    //             image: ""
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: Math.random(),
+    //     heading: "Makeup Beauty Products",
+    //     image: "https://thumbs.dreamstime.com/b/make-up-bag-cosmetic-beauty-products-make-up-bag-cosmetic-beauty-products-women-s-secrets-cosmetics-perfume-brushes-143303525.jpg",
+    //     subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+    // },
     // {
     //     id: Math.random(),
     //     heading: "Trimmer",
     //     image: "https://5.imimg.com/data5/GN/ZL/IW/ANDROID-3693809/images-30-jpeg-500x500.jpeg"
     // },
-    {
-        id: Math.random(),
-        heading: "Others",
-        image: "",
-        subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
-    }
+    // {
+    //     id: Math.random(),
+    //     heading: "Others",
+    //     image: "",
+    //     subCategory: [{ heading: "Smart Watch", image: "" }, { heading: "Analog Watch ", image: "" }]
+    // }
 ]
 
 export const items = [

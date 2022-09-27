@@ -2,7 +2,10 @@
   padding: 50px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+}
+.section_heading {
+  padding: 20px 50px;
 }
 
 @media screen and (max-width: 400px) {

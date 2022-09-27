@@ -142,25 +142,21 @@ const SubcategoryPage = () => {
             </div>
             <div className="filter-item">
               <div className="filter-header">Price</div>
-              <div className="filter-body">
-                <span className="lower-price">
-                  Lower Price{" "}
-                  <input
-                    type="number"
-                    className="price-input"
-                    onChange={(e) => setLowerPrice(e.target.value)}
-                    value={lowerPrice}
-                  />
-                </span>
-                <span className="upper-price">
-                  Upper Price{" "}
-                  <input
-                    type="number"
-                    className="price-input"
-                    onChange={(e) => setUpperPrice(e.target.value)}
-                    value={upperPrice}
-                  />
-                </span>
+              <div className="filter-body price">
+                <span className="lower-price">Lower Price </span>
+                <input
+                  type="number"
+                  className="price-input"
+                  onChange={(e) => setLowerPrice(e.target.value)}
+                  value={lowerPrice}
+                />
+                <span className="upper-price">Upper Price </span>
+                <input
+                  type="number"
+                  className="price-input"
+                  onChange={(e) => setUpperPrice(e.target.value)}
+                  value={upperPrice}
+                />
               </div>
             </div>
             <div className="filter-item">
@@ -201,13 +197,15 @@ const SubcategoryPage = () => {
           </div>
         </div>
         <div className="sb-right">
-          <div className="subcategory-product">
-            <FilterAltIcon
-              className="filterIcon"
-              onClick={() => setFilterOpen(!filterOpen)}
-            />
-            Showing results for "{params.subcategory}"
-          </div>
+          {filteredData?.length && (
+            <div className="subcategory-product">
+              Showing results for "{params.subcategory}"
+              <FilterAltIcon
+                className="filterIcon"
+                onClick={() => setFilterOpen(!filterOpen)}
+              />
+            </div>
+          )}
           <div className="products-container">
             {filteredData?.length > 0 ? (
               <div className="category-list-products">

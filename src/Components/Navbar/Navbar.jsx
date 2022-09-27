@@ -9,17 +9,18 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user";
 import { closeFilter, toggleFilter } from "../../redux/helper";
 import NavSearch from "../../Components/navSearch/Navsearch";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = ({ searchInput }) => {
   const params = useParams();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [searchBoxOpen, setSearchBoxOpen] = useState(false);
 
   // redux
   const { quantity } = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user.currentUser);
   const isFilterOpen = useSelector((state) => state.helper.filterModalOpen);
-  console.log(isFilterOpen);
 
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const Navbar = ({ searchInput }) => {
   };
 
   //
-  const [search, setSearch] = useState(searchInput);
+  const [search, setSearch] = useState(searchInput ? searchInput : "");
   const [isOrderPage, setOrderPage] = useState(false);
 
   useEffect(() => {
@@ -42,10 +43,10 @@ const Navbar = ({ searchInput }) => {
     setOpen(false);
     navigate("/login");
   };
+
   return (
     <div className="navbar-container">
       <div className="navbar">
-        {/* <NavSearch className="navbar_search_modal" /> */}
         <div className="navbar_left">
           <p className="navbar_brand" onClick={() => navigate("/")}>
             smartbuy
@@ -72,7 +73,46 @@ const Navbar = ({ searchInput }) => {
           </button>
         </div>
         <div className="navbar_right">
-          <SearchIcon className="search_bar_icon" />
+          {!searchBoxOpen ? (
+            <SearchIcon
+              className="search_bar_icon"
+              onClick={() => setSearchBoxOpen(!searchBoxOpen)}
+            />
+          ) : (
+            <div className="search_box_modal">
+              <div className="search_box_modal_wrapper">
+                <div className="search_box_top">
+                  <div>Search product</div>
+                  <div
+                    className="close_searchBox_btn"
+                    onClick={() => {
+                      setSearchBoxOpen(!searchBoxOpen);
+                    }}
+                  >
+                    <CloseIcon />
+                  </div>
+                </div>
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  className="search_box_modal_input"
+                />{" "}
+                <div
+                  className="search_searchBox_btn"
+                  onClick={() => {
+                    if (search.length) {
+                      navigate(`/products/search/${search}`);
+                    } else {
+                      alert("Enter something to search !");
+                    }
+                    // console.log("searching...");
+                  }}
+                >
+                  Search
+                </div>
+              </div>
+            </div>
+          )}
           {!isOrderPage ? (
             <div className="orders" onClick={() => navigate("/orders")}>
               Orders
@@ -85,6 +125,7 @@ const Navbar = ({ searchInput }) => {
               className="cart_icon"
               onClick={() => navigate("/cart")}
             />
+
             {quantity > 0 && <span className="quantity_badge">{quantity}</span>}
           </div>
 

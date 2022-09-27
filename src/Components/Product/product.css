@@ -83,20 +83,22 @@
 @media only screen and (max-width: 420px) {
   .product {
     height: 220px;
-    width: calc(100vw / 2) !important;
+    width: calc(98.5vw / 2) !important;
     border-radius: 0px;
     cursor: pointer;
-    border: 1px solid rgb(238, 238, 238);
+    border: 1px solid rgb(211, 211, 211);
     font-size: 14px;
     box-shadow: 0px 0px 1px 0px rgba(151, 151, 151, 0.46);
+    padding-bottom: 0px;
   }
   .product > img {
     padding: 5px;
     min-height: 180px;
     max-height: 180px;
-    width: calc(98.5vw / 2);
+    width: calc(98vw / 2);
     border-radius: 4px;
     object-fit: contain;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    box-sizing: border-box;
   }
 }

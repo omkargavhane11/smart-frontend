@@ -87,9 +87,23 @@ input {
   padding: 0px 10px !important;
 }
 
-.login_loader {
-  height: 20px !important;
-  width: 20px !important;
+.add_loader {
+  height: 1px !important;
+  width: 1px !important;
+  margin: 0px;
+  padding: 0px;
+}
+
+.save_product_btn {
+  height: 30px;
+  width: 60px;
+  border-color: gray;
+  color: black;
+}
+
+.saveProduct:disabled {
+  color: black;
+  background-color: rgb(102, 152, 191);
 }
 
 @media screen and (max-width: 400px) {

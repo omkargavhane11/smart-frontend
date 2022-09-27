@@ -16,10 +16,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     if (!currentUser) navigate("/");
   }, []);
 
-  let newCategoryData = [
-    { heading: "null", id: Math.random() },
-    ...categoryData,
-  ];
+  let newCategoryData = [...categoryData];
 
   const [file, setFile] = useState("");
   const [description, setDescription] = useState("");
@@ -342,20 +339,12 @@ const NewProductForm = ({ counter, setCounter }) => {
               <button className="backToHome" type="reset" onClick={handleReset}>
                 Reset Form
               </button>
-              <button className="saveProduct" type="submit">
-                {loading === true ? (
-                  <CircularProgress color="inherit" className="login_loader" />
-                ) : (
-                  "Save"
-                )}
+              <button className="saveProduct" type="submit" disabled={loading}>
+                {loading === true
+                  ? // <CircularProgress color="inherit" className="add_loader" />
+                    "Saving..."
+                  : "Save"}
               </button>
-              {/* <button
-              className="backToHome"
-              type="button"
-              onClick={() => console.log(subcategory)}
-              >
-              Home Page
-            </button> */}
             </div>
           </div>
         </form>

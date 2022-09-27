@@ -2,7 +2,7 @@
   height: 100vh;
   display: flex;
   margin: 20px 0px;
-  color: black !important;
+  color: black;
 }
 
 .category-list-products {
@@ -27,6 +27,7 @@
   padding: 10px;
   font-size: 16px;
   position: sticky;
+  color: black;
 }
 
 .colorText {
@@ -38,6 +39,7 @@
   flex: 3.5;
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 .filter-item {
@@ -64,6 +66,7 @@
 .checkbox_div > input {
   height: 15px;
   width: 15px;
+  color: black;
 }
 
 .save-filter {
@@ -77,14 +80,23 @@
   font-size: 14px;
 }
 
+.filter-body.price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 90%;
+}
+
 .subcategory-product {
   font-size: 20px;
+  /* padding: 0px 10px; */
 }
 
 .price-input {
   outline: lightgray;
   padding: 0px 5px;
   font-size: 14px;
+  width: 80%;
 }
 
 .no-products-to-display {
@@ -172,7 +184,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* background-color: #eee; */
     padding: 10px;
     border-radius: 5px;
     font-size: 16px;
@@ -206,31 +217,34 @@
   }
 
   .subcategory-product {
-    font-size: 20px;
+    font-size: 16px;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: space-between;
+    margin-top: 0px 0px;
+    padding: 8px 5px;
   }
 
   .price-input {
     outline: lightgray;
     padding: 0px 5px;
     font-size: 14px;
+    width: 80%;
   }
 
   .no-products-to-display {
-    font-size: 26px;
-    text-align: center;
+    font-size: 20px;
+    margin: 30px auto;
   }
   .filter_top {
-    width: 100%;
+    width: 90%;
     position: relative;
   }
   .filterIcon {
     margin-right: 10px;
-    color: rgb(132, 132, 132) !important;
+    color: rgb(44, 140, 196) !important;
     display: block !important;
-    border: 1px solid rgb(114, 114, 114) !important;
+    border: 1px solid rgb(38, 130, 206) !important;
+    border-radius: 4px;
   }
 
   .fm_close_icon {

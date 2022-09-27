@@ -1,40 +1,50 @@
 .c_category_wrapper_div {
   max-width: 200px;
   min-width: 200px;
-  height: 250px;
+  height: max-content;
   display: flex;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
-  padding: 10px 0px;
-  transition: all 0.3s ease-in-out;
+  padding: 3px 0px;
+  background-color: rgb(233, 216, 67);
 }
 
 .c_category_wrapper_div:hover {
-  scale: 1.001;
+  scale: 1;
 }
 
 .category_wrapper {
-  height: max-content;
-  min-width: 200px;
+  height: 100%;
+  width: 100%;
   color: white;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
 }
 
 .category_heading {
-  height: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 18px;
   color: black;
 }
 
 .category_image {
   height: 180px;
-  max-width: 100%;
+  max-width: 96%;
+  min-width: 96%;
   object-fit: contain;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #efefef;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 1px;
 }
 
 @media screen and (max-width: 400px) {

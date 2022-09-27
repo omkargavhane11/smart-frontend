@@ -220,6 +220,7 @@
     cursor: pointer;
     font-weight: bold;
     width: 33%;
+    height: 40px;
   }
   .productInfo {
     font-size: 18px;

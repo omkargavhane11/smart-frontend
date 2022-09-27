@@ -25,3 +25,34 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 400px) {
+  .search-container {
+    color: black;
+  }
+
+  .resultsPage {
+    padding: 0px;
+  }
+
+  .sr-page-header {
+    font-size: 14px;
+    margin: 10px;
+    max-width: 70%;
+  }
+
+  .search-container {
+    height: 92vh;
+    display: flex;
+  }
+
+  .sb-left {
+    flex: 1;
+  }
+
+  .resultsPage {
+    flex: 3.5;
+    display: flex;
+    flex-direction: column;
+  }
+}

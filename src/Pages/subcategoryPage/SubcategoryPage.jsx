@@ -10,14 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CloseIcon from "@mui/icons-material/Close";
 import { openFilter, toggleFilter } from "../../redux/helper";
+import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton";
 
 const SubcategoryPage = () => {
   const isFilterOpen = useSelector((state) => state.helper.filterModalOpen);
   const dispatch = useDispatch();
 
   const params = useParams();
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
 
   const [colorData, setColorData] = useState([]);
   const [brandData, setBrandData] = useState([]);
@@ -59,7 +60,7 @@ const SubcategoryPage = () => {
     }
 
     if (checkedBoxes.length > 0) {
-      updatedData = updatedData.filter((item) =>
+      updatedData = updatedData?.filter((item) =>
         checkedBoxes.includes(item.color.toLowerCase())
       );
     }
@@ -68,12 +69,12 @@ const SubcategoryPage = () => {
 
     // price filter
     if (lowerPrice) {
-      updatedData = updatedData.filter((item) => item.price > lowerPrice);
+      updatedData = updatedData?.filter((item) => item.price > lowerPrice);
       setFilteredData(updatedData);
     }
 
     if (upperPrice) {
-      updatedData = updatedData.filter((item) => item.price < upperPrice);
+      updatedData = updatedData?.filter((item) => item.price < upperPrice);
       setFilteredData(updatedData);
     }
 
@@ -87,7 +88,7 @@ const SubcategoryPage = () => {
     }
 
     if (brande_checked_boxes.length > 0) {
-      updatedData = updatedData.filter((item) =>
+      updatedData = updatedData?.filter((item) =>
         brande_checked_boxes.includes(item.brand.toLowerCase())
       );
     }
@@ -110,6 +111,8 @@ const SubcategoryPage = () => {
   }, [lowerPrice, upperPrice]);
 
   const [filterOpen, setFilterOpen] = useState(false);
+
+  const product_skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
     <div>
@@ -207,19 +210,28 @@ const SubcategoryPage = () => {
             </div>
           )}
           <div className="products-container">
-            {filteredData?.length > 0 ? (
-              <div className="category-list-products">
-                {filteredData?.map((item) => (
-                  <Product product={item} key={item._id} />
-                ))}
-              </div>
-            ) : (
-              <div className="no-products-to-display">
-                No products to display
-              </div>
-            )}
+            <>
+              {filteredData?.length > 0 && data !== null && (
+                <div className="category-list-products">
+                  {filteredData?.map((item) => (
+                    <Product product={item} key={item._id} />
+                  ))}
+                </div>
+              )}
+              {filteredData?.length === 0 && data !== null && (
+                <div className="no-products-to-display">
+                  No products to display
+                </div>
+              )}
+              {filteredData === null && data === null && (
+                <div className="category-list-products">
+                  {product_skeleton.map((item) => (
+                    <ProductSkeleton />
+                  ))}
+                </div>
+              )}
+            </>
           </div>
-          <Footer />
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const persistConfig = {
     storage,
 };
 
-// 🔸 if only one reducer exists, use line 23 !
+// 🔸 if only one reducer exists.
 // const persistedReducer = persistReducer(persistConfig, cartReducer); 
 
 // 🔸 for two and more reducers, use "combineReducers" method as written below.

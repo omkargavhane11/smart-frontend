@@ -1,0 +1,27 @@
+.dp{
+    height: 100vh;
+    width: 100vw;
+}
+
+.dp_wrapper{
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid #000;
+    position: sticky;
+    top: 50px;
+    background-color:white;
+}
+
+.dp_item{
+    height: 50px;
+    width: 150px;
+    border: 1px solid gray;;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+}

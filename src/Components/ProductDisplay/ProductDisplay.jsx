@@ -6,12 +6,17 @@ import { useEffect, useState } from "react";
 import { addProduct } from "../../redux/cart";
 import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {API} from "../../api";
+import Product from "../Product/Product";
 
 const ProductDisplay = () => {
   const params = useParams();
   const navigate = useNavigate();
+  // main display product
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState(1);
+  // related products
+  const [similar_products,setSimilar_products] = useState([]);
 
   const user = useSelector((state) => state.user.user);
 
@@ -19,14 +24,27 @@ const ProductDisplay = () => {
 
   const getProductData = async () => {
     const { data } = await axios.get(
-      `https://s-mart-77.herokuapp.com/products/${params.productId}`
+      `${API}/products/${params.productId}`
     );
     setProduct(data);
+    console.log(data);
+    getSimilarProducts(data.category,data.subcategory);
   };
+
+  const getSimilarProducts = async(category, subcategory) =>{
+    const { data } = await axios.get(
+      `${API}/products/subcategory/${subcategory}`
+    );
+
+    let unique = data.productList;
+    let newData = unique.filter((r) => r._id !== params.productId)
+
+    setSimilar_products(newData);
+  }
 
   useEffect(() => {
     getProductData();
-  }, []);
+  }, [params.productId]);
 
   const handleAddToCart = async (item) => {
     if (quantity) {
@@ -70,7 +88,7 @@ const ProductDisplay = () => {
               <div className="productInfo">{product.description}</div>
 
               <div className="productPrice_container">
-                <span className="product_price">₹ {product.price}</span>
+                <span className="">₹ {product.price}</span>
                 <span className="product_price_discount">
                   ₹ {Math.round(product.price * 1.2)}
                 </span>
@@ -104,6 +122,18 @@ const ProductDisplay = () => {
               </div>
             </div>
           </div>
+        </div>
+        {/*  */}
+      </div>
+      {/* <hr className="section_divider"></hr> */}
+      <div className="single_related_products">
+        <div className="single_related_products_wrapper">
+        <div className="single_related_heading">Products related to this item</div>
+        <div className="single_related_mapper">
+          {similar_products.map((p,index) => (
+            <Product product={p} key={index}/>
+          ))}
+        </div>
         </div>
       </div>
     </div>

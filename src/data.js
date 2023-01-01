@@ -43,7 +43,7 @@ export const categoryData = [
                 heading: "Smart Watch",
                 image: "https://cdn.shopify.com/s/files/1/0057/8938/4802/products/1bca7fb9-5f5c-42e3-930a-8a430d8a9e60_600x.png?v=1625046217"
             }, {
-                heading: "Analog Watch ",
+                heading: "Analog Watch",
                 image: "https://helix-watches.com/media/catalog/product/cache/418f1337e39e3b5a226c1002bdcc3d4a/t/w/tw043hg10_px1200.jpg"
             }
         ]
@@ -88,6 +88,23 @@ export const categoryData = [
                 heading: "Storage Boxes",
                 image: "https://m.media-amazon.com/images/I/81yX6BsHIbL._AC_UL480_FMwebp_QL65_.jpg"
             }
+        ]
+    },
+    {
+        id: Math.random(),
+        heading: "Electronics",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8bhs0V_bxMPvz5JSItzp_KVc_eaHeZ1J8gk5LW9t-hj4DWHqbT9tO1isQPUTOvfRMy2g&usqp=CAU",
+        subCategory: [
+            {
+                heading: "Mobile",
+                image: "https://m.media-amazon.com/images/I/71JT4+SncjL._AC_UL480_FMwebp_QL65_.jpg"
+            }, {
+                heading: "Laptop",
+                image: "https://m.media-amazon.com/images/I/81yX6BsHIbL._AC_UL480_FMwebp_QL65_.jpg"
+            },  {
+                heading: "Ipad",
+                image: "https://m.media-amazon.com/images/I/71JT4+SncjL._AC_UL480_FMwebp_QL65_.jpg"
+            }   
         ]
     },
     // {

@@ -11,6 +11,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CloseIcon from "@mui/icons-material/Close";
 import { openFilter, toggleFilter } from "../../redux/helper";
 import ProductSkeleton from "../../Components/ProductSkeleton/ProductSkeleton";
+import { API } from "../../api";
 
 const SubcategoryPage = () => {
   const isFilterOpen = useSelector((state) => state.helper.filterModalOpen);
@@ -25,7 +26,7 @@ const SubcategoryPage = () => {
 
   const productData = async () => {
     const res = await axios.get(
-      `https://s-mart-77.herokuapp.com/products/subcategory/${params.subcategory}`
+      `${API}/products/subcategory/${params.subcategory}`
     );
     setData(res.data.productList);
     setFilteredData(res.data.productList);
@@ -118,14 +119,19 @@ const SubcategoryPage = () => {
     <div>
       <Navbar />
       <div className="sb-container">
+
         <div className={filterOpen ? "sb-left active" : "sb-left"}>
           <div className="filter-wrapper">
+
             <div className="filter_top">
               <CloseIcon
                 className="fm_close_icon"
                 onClick={() => setFilterOpen(!filterOpen)}
               />
             </div>
+
+            <div className="filter-section-heading">FILTERS</div>
+
             <div className="filter-item">
               <div className="filter-header">Color</div>
               <div className="filter-body">
@@ -179,30 +185,13 @@ const SubcategoryPage = () => {
                 ))}
               </div>
             </div>
-            {/* <div className="filter-item">
-            <div className="filter-header">Gender</div>
-            <div className="filter-body">
-            {genders.map((item, index) => (
-              <div className="checkbox_div" key={index}>
-              <input
-                    type="checkbox"
-                    name="brand"
-                    value={item}
-                    className="gender-checkbox"
-                    onClick={updateFilters}
-                    />
-                    <span className="brandName">{item}</span>
-                    </div>
-                    ))}
-                    </div>
-                  </div> */}
-            {/* <button className="save-filter">Save Filter</button> */}
           </div>
         </div>
+
         <div className="sb-right">
           {filteredData?.length && (
             <div className="subcategory-product">
-              Showing results for "{params.subcategory}"
+              Showing results for <strong>{params.subcategory}</strong>
               <FilterAltIcon
                 className="filterIcon"
                 onClick={() => setFilterOpen(!filterOpen)}
@@ -225,8 +214,8 @@ const SubcategoryPage = () => {
               )}
               {filteredData === null && data === null && (
                 <div className="category-list-products">
-                  {product_skeleton.map((item) => (
-                    <ProductSkeleton />
+                  {product_skeleton.map((item,index) => (
+                    <ProductSkeleton key={index} />
                   ))}
                 </div>
               )}

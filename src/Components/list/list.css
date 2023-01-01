@@ -45,6 +45,12 @@
   object-fit: contain;
 }
 
+.li-img-edit {
+  height: 100px;
+  width: 80px;
+  object-fit: contain;
+}
+
 .li-desc {
   width: 100%;
 }

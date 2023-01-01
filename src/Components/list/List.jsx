@@ -2,11 +2,17 @@ import "./list.css";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import {API} from "../../api";
+import { useDispatch } from "react-redux";
+import { closeNavModal } from "../../redux/helper";
 
 const List = ({ product }) => {
+  // 
   const toast = useToast();
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-
+  // 
+  let [custom_product, setCustom_Product] = useState(product);
   // product inputs
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState(product?.description);
@@ -26,9 +32,17 @@ const List = ({ product }) => {
     // formData.append("subcategory", subcategory);
     // formData.append("color", color);
     // formData.append("brand", brand);
+
+    const payload = {
+      // file ? URL.createObjectURL(file) : "",  
+      description,
+      price,
+      quantity
+    }
+
     try {
-      const { update } = await axios.put(
-        `https://s-mart-77.herokuapp.com/products/${product._id}`,
+      const { data } = await axios.put(
+        `${API}/products/${product._id}`,
         formData,
         {
           headers: {
@@ -37,7 +51,7 @@ const List = ({ product }) => {
         }
       );
 
-      if (update?.modifiedCount === 1) {
+      if (data?.update.modifiedCount === 1) {
         console.log("Product details updated successfully");
         toast({
           title: "Success",
@@ -47,6 +61,8 @@ const List = ({ product }) => {
           isClosable: true,
           position: "bottom",
         });
+        // console.log(formData);
+        setCustom_Product({...custom_product, ...payload})
       } else {
         console.log("Failed to update product details");
         toast({
@@ -70,13 +86,40 @@ const List = ({ product }) => {
   const deleteProduct = async () => {
     try {
       const action = await axios.delete(
-        `https://s-mart-77.herokuapp.com/products/${product._id}`
+        `${API}/products/${product._id}`
       );
       console.log(action.data);
+      if(action.data.msg === "deleted"){
+        toast({
+          // title: "error",
+          description: "Product deleted successfully !",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     } catch (error) {
       console.log(error.message);
+      toast({
+        title: "error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
     }
   };
+
+  document.addEventListener("click", (e) => {
+    console.log({id: e.target.id})
+    if(e.target.id !== "navbar_avatar"){
+        dispatch(closeNavModal())
+    }
+    e.stopPropagation();
+  })
+
 
   return (
     <div className={edit ? "li edit-inventory" : "li"}>
@@ -87,9 +130,9 @@ const List = ({ product }) => {
       />
       {!edit ? (
         <div className="li-details">
-          <div className="li-desc">{product?.description}</div>
-          <div className="li-price">₹ {product?.price}</div>
-          <div className="li-stock">Stock Quantity - {product?.quantity}</div>
+          <div className="li-desc">{custom_product?.description}</div>
+          <div className="li-price">₹ {custom_product?.price}</div>
+          <div className="li-stock">Stock Quantity - {custom_product?.quantity}</div>
           <div className="li-btns">
             <button className="li-btn" onClick={() => setEdit(true)}>
               Edit

@@ -4,10 +4,27 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin: 50px 0px;
   font-weight: normal;
-  color: rgb(41, 41, 41);
+  color: black;
+  padding-bottom: 40px;
+  /* background-color: #999; */
 }
+
+.dateInputContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0px 30px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+#date{
+  width: 150px;
+}
+
 .orderProductItem {
   display: flex;
   padding: 10px;
@@ -34,7 +51,7 @@
 }
 
 .page_heading {
-  margin: 35px;
+  margin: 20px 0px;
   text-align: center;
   color: black;
   font-size: 28px;
@@ -42,9 +59,11 @@
 
 .order_product {
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height: max-content;
-  width: 700px;
+  background-color: #fff;
+  /* margin: 0px 30px; */
+  width: 90%;
+  border: 1px solid lightgray;
 }
 
 .order_product_container {
@@ -59,7 +78,7 @@
   justify-content: center;
 }
 .order_productImage {
-  object-fit: cover;
+  object-fit: contain;
   margin-left: -2px;
   max-height: 180px;
 }
@@ -70,24 +89,35 @@
   flex-direction: column;
   gap: 4px;
   padding: 10px;
+  font-size: 16px;
 }
 
 .order_product_description {
   font-weight: 500;
   color: black;
-  font-size: 22px;
 }
 
 .cancel_order {
   background-color: #dcdcdc;
   color: rgb(5, 5, 5);
-  width: 120px;
+  width: max-content;
+  height: 40px;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.cancel_order1{
+  color: rgb(255, 0, 0);
+  border: 1px solid rgba(255, 0, 0, 0.562);
+  width: max-content;
+  height: 40px;
   border-radius: 4px;
   padding: 4px;
 }
 
 .order_wale_buttons {
   display: flex;
+  flex-direction: column;
   gap: 20px;
   margin: 10px 0px;
 }
@@ -102,7 +132,13 @@
 
 .or-deliver {
   color: rgb(0, 185, 0);
-  font-size: 22px;
+  font-size: 18px;
+  /* font-weight: bold; */
+}
+
+.or-cancelled {
+  color: rgb(243, 62, 17);
+  font-size: 18px;
   font-weight: bold;
 }
 

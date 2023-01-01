@@ -1,4 +1,4 @@
-import "./login.css";
+import "./loginMerchant.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -8,7 +8,7 @@ import { useToast } from "@chakra-ui/react";
 import { CircularProgress } from "@mui/material";
 import { API } from "../../api";
 
-const Login = () => {
+const LoginMerchant = () => {
   const toast = useToast();
 
   const navigate = useNavigate();
@@ -39,14 +39,17 @@ const Login = () => {
         dispatch(loginStart);
         setLoading(true);
         const { data } = await axios.post(
-          `${API}/login/customer`,
+          `${API}/login/merchant`,
           payload
         );
 
         if (data.msg === "success") {
           setLoading(false);
           dispatch(loginSuccess(data.user));
-          navigate("/");
+
+          data.user.userType === "Merchant" ? navigate("/store") : navigate("/deliverypartner");
+
+          
         } else {
           dispatch(loginFailure);
           setLoading(false);
@@ -87,6 +90,9 @@ const Login = () => {
         <h1 className="website-logo" onClick={() => navigate("/")}>
           smartbuy
         </h1>
+        <h3 className="login_page_heading">
+          Merchant Login
+        </h3>
         <div className="input">
           <label htmlFor="email">Email</label>
           <input
@@ -134,7 +140,7 @@ const Login = () => {
             "Login"
           )}
         </button>
-        <button className="signupBtn" onClick={() => navigate("/register")}>
+        <button className="signupBtn" onClick={() => navigate("/register-merchant")}>
           Sign up
         </button>
       </div>
@@ -142,4 +148,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginMerchant;

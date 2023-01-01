@@ -6,22 +6,36 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import { useToast } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import {API} from "../../api";
+import { closeNavModal } from "../../redux/helper";
+
+
+const filterTypes = [
+  { type: "All", selected: true },
+  { type: "Generated", selected: false },
+  { type: "Ready for dispatched", selected: false },
+  { type: "Dispatched", selected: false },
+  { type: "Out for delivery", selected: false },
+  { type: "Delivered", selected: false },
+];
 
 const ManageOrders = () => {
+  // 
   const toast = useToast();
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
 
   const [orders, setOrders] = useState([]);
   const [filterData, setFilteredData] = useState([]);
 
-  const [type, setType] = useState("all");
+  const [type, setType] = useState("All");
 
   const [search, setSearch] = useState("");
 
   const getData = async () => {
-    const data = await axios.get(`https://s-mart-77.herokuapp.com/api/order`);
+    const data = await axios.get(`${API}/api/order`);
 
     setOrders(
       data.data.sort((p1, p2) => {
@@ -38,41 +52,35 @@ const ManageOrders = () => {
   useEffect(() => {
     getData();
   }, []);
+    
+  const [selectedType, setSelectedType] = useState("All")
 
-  function filterDataFunction() {
-    let og_data = orders;
-    let updatedFilter;
-    if (type !== "All") {
-      updatedFilter = og_data.filter((item) => item.status === type);
-    } else {
-      updatedFilter = og_data;
-    }
-
-    setFilteredData(updatedFilter);
-  }
-
-  useEffect(() => {
-    filterDataFunction();
-    // eslint-disable-next-line
-  }, [type]);
-
+  const data = selectedType === "All" ? filterData : filterData.filter(product => product.status === selectedType)
+  
   const handleStatusUpdate = async (id, status) => {
-    let data;
+    let payload_status;
     if (status === "Generated") {
-      data = "Dispatched";
+      payload_status = "Ready for dispatch";
+    }else if (status === "Ready for dispatch") {
+      payload_status = "Dispatched";
     } else if (status === "Dispatched") {
-      data = "Out for delivery";
+      payload_status = "Out for delivery";
     } else if (status === "Out for delivery") {
-      data = "Delivered";
+      payload_status = "Delivered";
     }
 
+    const payload = {
+      status: payload_status,
+      orderLog:{
+        status: payload_status,
+        dateAndTime : Date.now()
+      }
+    }
+    
     try {
       const updateStatus = await axios.put(
-        `https://s-mart-77.herokuapp.com/api/order/${id}`,
-        {
-          status: data,
-        }
-      );
+        `${API}/api/order/${id}`, payload);
+
       console.log(updateStatus.data.msg);
 
       if (updateStatus.data.msg === "success") {
@@ -83,6 +91,14 @@ const ManageOrders = () => {
           isClosable: true,
           position: "bottom",
         });
+
+        let temp = filterData;
+        let item = temp.find(i => i._id === id);
+        item.status = payload_status;
+        let index_of_item = temp.indexOf(item);
+        temp[index_of_item] = item;
+        setFilteredData([...temp])
+         
       } else {
         toast({
           description: "Failed to update status !",
@@ -97,33 +113,26 @@ const ManageOrders = () => {
     }
   };
 
-  const [filterTypes, setFilterTypes] = useState([
-    { type: "All", selected: true },
-    { type: "Generated", selected: false },
-    { type: "Dispatched", selected: false },
-    { type: "Out for delivery", selected: false },
-    { type: "Delivered", selected: false },
-  ]);
-
   const handleTypeSelect = (type) => {
-    var temp = filterTypes;
-    temp.forEach((item) => {
-      if (item.type === type) {
-        item.selected = true;
-        setType(item.type);
-      } else {
-        item.selected = false;
-      }
-    });
-    setFilterTypes(temp);
+    setSelectedType(type);  
   };
 
+
   useEffect(() => {
-    if (!currentUser.isAdmin) {
-      navigate("/");
+    if (!currentUser?.userType === "Merchant"  || !currentUser?.userType === "Admin") {
+      navigate("/login-merchant");
     }
     // eslint-disable-next-line
   }, []);
+
+  document.addEventListener("click", (e) => {
+    console.log({id: e.target.id})
+    if(e.target.id !== "navbar_avatar"){
+        dispatch(closeNavModal())
+    }
+    e.stopPropagation()
+  })
+
 
   return (
     <div className="mo">
@@ -148,7 +157,7 @@ const ManageOrders = () => {
           {filterTypes.map((item, index) => (
             <div
               className={
-                item.selected === true
+                item.type === selectedType
                   ? "mo-filter-item-selected"
                   : "mo-filter-item"
               }
@@ -167,32 +176,33 @@ const ManageOrders = () => {
           ))}
         </div>
         <div className="mo-order-display">
-          {filterData.length !== 0 ? (
-            <div className="orderProduct">
-              {filterData?.map((product, index) => (
-                <div className="order_product" key={index}>
-                  <div className="order_product_container">
-                    <div className="order_product_img_container">
+          {data.length !== 0 ? (
+            <div className="moProduct">
+              {data?.map((product, index) => (
+                <div className="mo_product" key={index}>
+                  <div className="mo_product_container">
+
+                    <div className="mo_product_img_container">
                       <img
                         src={product.productDetail.image}
                         alt="product_image"
-                        className="order_productImage"
+                        className="mo_product_image"
                       />
                     </div>
-                    <div className="order_productBottom">
-                      <div className="order_product_description">
+
+                    <div className="mo_productBottom">
+                      <div className="mo_product_description">
                         {product.productDetail.description}
                       </div>
                       <div className="quantity">
                         Order Size - {product.productDetail.order_quantity}{" "}
                         {product.productDetail.unit}
                       </div>
-                      <div className="order_value">
-                        Order price - ₹{" "}
-                        {product.productDetail.order_quantity *
+                      <div className="mo_value">
+                        Order price - ₹ {product.productDetail.order_quantity *
                           product.productDetail.price}
                       </div>
-                      <div className="order_date">
+                      <div className="mo_date">
                         Order Date :{" "}
                         {moment(product.productDetail.createdAt).format("lll")}
                       </div>
@@ -212,27 +222,51 @@ const ManageOrders = () => {
                           Order Status : {product.status}
                         </div>
                       )}
-
-                      <div className="order_wale_buttons">
-                        {product.status !== "Delivered" ? (
-                          <div
-                            className="cancel_order"
-                            onClick={() =>
-                              handleStatusUpdate(product._id, product.status)
-                            }
-                          >
-                            {product.status === "Generated" &&
-                              "Update as 'Dispatched'"}
-                            {product.status === "Dispatched" &&
-                              "Update as 'Out for delivery'"}
-                            {product.status === "Out for delivery" &&
-                              "Update as 'Delivered'"}
-                          </div>
-                        ) : (
-                          <div className="or-deliver">Delivered</div>
-                        )}
+                      <div className="order_logs_container">
+                        {product?.orderLog?.map((log,index) => (
+                          <div key={index} className="order_log">{log.status} at {moment(log.dataAndTime).format("lll")}</div>
+                          // <div>Order log</div>
+                        ))}
                       </div>
                     </div>
+
+                    {  product.status !== "Dispatched" && (product.status === "Delivered" || "cancelled" || "Generated") ? 
+                    (
+                    <div className="mo_wale_buttons">
+                      {product.status !== "Delivered" || "cancelled"? 
+                      (
+                        <div className="mo_wale_buttons">
+                          {product.status !== "Delivered" && product.status !== "cancelled" ? (
+                            <div
+                              className="mo_button_options"
+                              onClick={() =>
+                                handleStatusUpdate(product._id, product.status)
+                              }
+                            >
+                              {product.status === "Generated" &&
+                                "Ready for dispatch"}
+                              {product.status === "Ready for dispatch" &&
+                                "Dispatch"}
+                              {product.status === "Dispatched" &&
+                                "Out for delivery"}
+                              {product.status === "Out for delivery" &&
+                                "Delivered"}
+                            </div>
+                            ) : (
+                            product.status !== "cancelled" ? <div className="or-deliver">Delivered</div> : <div className="or-cancelled">Cancelled</div> 
+                          )
+                          }
+                        </div>
+                      ) : (
+                        product.status === "Delivered" ? <div className="or-deliver">Delivered</div> : <div className="or-cancelled">Cancelled</div> 
+                      )
+                      }
+                    </div>
+                    ):(
+                    <div className="mo_wale_buttons"></div>
+                    )
+                    }
+
                   </div>
                 </div>
               ))}

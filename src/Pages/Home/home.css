@@ -6,19 +6,24 @@
   background-color: #efefef;
 }
 
+/* .home_cat_container{
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+} */
+
 .cat_display_container {
   min-height: 100vh;
 }
 
-.cat_display {
+.home_cat_display {
   display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
 }
 
-.section_heading {
+.home_section_heading {
   font-size: 24px;
-  padding: 20px 0px;
+  /* padding: 20px 0px; */
   display: flex;
   gap: 20px;
   align-items: center;
@@ -26,24 +31,103 @@
 }
 
 .bottom {
-  padding-bottom: 40px;
+  margin-top: -150px;
+  z-index: 20;
 }
 
 .home_bottom {
-  margin: 0px 100px;
   display: flex;
   flex-direction: column;
-  /* color: gray; */
 }
 
 .section_heading_div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* color: white; */
   color: gray;
   margin: 20px 0px;
 }
+
+.home_header_img{
+  width: 100vw;
+  object-fit: contain;
+}
+
+.home_middle{
+  display: flex;
+  align-items: center;
+}
+
+.home_header_img_container{
+  position: relative;
+}
+
+.arrow_back{
+  position: absolute;
+  top: 20%;
+  left: 0px;
+  background-color: white;
+  z-index: 10;
+  height: 100px !important;
+  width: 50px !important;
+  cursor: pointer;
+}
+
+.arrow_forward{
+  position: absolute;
+  top: 20%;
+  right: 0px;
+  background-color: #fff;
+  z-index: 10;
+  height: 100px !important;
+  width: 50px !important;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 400px) {
   .home {
@@ -61,14 +145,18 @@
     min-height: 100vh;
   }
 
-  .cat_display {
+  .home_cat_display {
     display: flex;
     gap: 5vw;
     justify-content: center;
     flex-wrap: wrap;
+    /* padding: 20px; */
+    box-sizing: border-box;
+    /* background-color: #fff; */
+    border-radius: 5px;
   }
 
-  .section_heading {
+  .home_section_heading {
     font-size: 24px;
     font-weight: 500;
     padding: 10px 10px 10px 10px;
@@ -79,14 +167,14 @@
   }
 
   .bottom {
-    padding-bottom: 40px;
+  margin-top: -200px;
+  padding-bottom: 40px;
   }
 
   .home_bottom {
     margin: 0px 0px;
     display: flex;
     flex-direction: column;
-    /* color: gray; */
   }
 
   .section_heading_div {

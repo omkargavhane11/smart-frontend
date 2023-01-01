@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateAddress } from "../../redux/user";
 import { emptyCart } from "../../redux/cart";
+import { API } from "../../api";
 
 const Checkout = () => {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
@@ -29,24 +30,26 @@ const Checkout = () => {
 
   // creating order in DB
   const handleBuy = async () => {
-    console.log("order placed successfully ✅");
-    const data = {
-      productDetail: products[0],
-      orderTotal: total,
-      deliveryAddress: userAddress,
-      user: currentUser,
-      contactNo: contactDetail,
-    };
+    // const data = {
+    //   productDetail: products[0],
+    //   orderTotal: total,
+    //   deliveryAddress: userAddress,
+    //   user: currentUser,
+    //   contactNo: contactDetail,
+    // };
+    
+    // const createOrder = await axios.post(
+    //   `${API}/api/order`,
+    //   data
+    //   );
+    //   // console.log(createOrder.data);
+    //   if (createOrder.data.msg === "ok") {
+    //     dispatch(emptyCart());
+    //     setIsOrderPlaced(true);
+    //     console.log("order placed successfully ✅");
+    // }
 
-    const createOrder = await axios.post(
-      "https://s-mart-77.herokuapp.com/api/order",
-      data
-    );
-    // console.log(createOrder.data);
-    if (createOrder.data.msg === "ok") {
-      dispatch(emptyCart());
-      setIsOrderPlaced(true);
-    }
+    console.log(products[0])
   };
 
   // save address information

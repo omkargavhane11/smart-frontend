@@ -6,6 +6,7 @@ import { CircularProgress, useToast } from "@chakra-ui/react";
 import { categoryData } from "../../data";
 import Navbar from "../Navbar/Navbar";
 import { useSelector } from "react-redux";
+import {API} from "../../api";
 
 const NewProductForm = ({ counter, setCounter }) => {
   const toast = useToast();
@@ -49,6 +50,7 @@ const NewProductForm = ({ counter, setCounter }) => {
     formData.append("subcategory", subcategory);
     formData.append("color", color);
     formData.append("brand", brand);
+    formData.append("merchantId", currentUser._id);
 
     if (
       (name ||
@@ -63,7 +65,7 @@ const NewProductForm = ({ counter, setCounter }) => {
       setLoading(true);
 
       const uploadProduct = await axios.post(
-        "https://s-mart-77.herokuapp.com/products",
+        `${API}/products`,
         formData,
         {
           headers: {
@@ -71,15 +73,7 @@ const NewProductForm = ({ counter, setCounter }) => {
           },
         }
       );
-      setFile("");
-      setDescription("");
-      setPrice("");
-      setUnit("");
-      setQuantity("");
-      setName("");
-      setCategory("");
-      setSubCategory("");
-      setColor("");
+      
 
       if (!uploadProduct.data.error) {
         setLoading(false);
@@ -91,7 +85,18 @@ const NewProductForm = ({ counter, setCounter }) => {
           duration: 5000,
           isClosable: true,
           position: "top",
-        });
+        }); 
+
+        setFile("");
+        setDescription("");
+        setPrice("");
+        setUnit("");
+        setQuantity("");
+        setName("");
+        setCategory("");
+        setSubCategory("");
+        setColor("");
+
       } else {
         setLoading(false);
 
@@ -102,9 +107,7 @@ const NewProductForm = ({ counter, setCounter }) => {
           duration: 5000,
           isClosable: true,
           position: "top",
-          // containerStyle: {
-          //   marginTop: "60px",
-          // },
+         
         });
       }
     } else {
@@ -131,6 +134,8 @@ const NewProductForm = ({ counter, setCounter }) => {
     //   subcategory,
     // });
   };
+
+ 
 
   // unit of product
   const selectOptionValue = () => {

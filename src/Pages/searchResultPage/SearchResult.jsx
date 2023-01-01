@@ -6,6 +6,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Product from "../../Components/Product/Product";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CloseIcon from "@mui/icons-material/Close";
+import { API } from "../../api";
 
 const SearchResult = () => {
   const params = useParams();
@@ -19,7 +20,7 @@ const SearchResult = () => {
 
   const productData = async () => {
     const res = await axios.get(
-      `https://s-mart-77.herokuapp.com/products/search/${params.searchItem}`
+      `${API}/products/search/${params.searchItem}`
     );
     setData(res.data.productList);
     setFilteredData(res.data.productList);
@@ -28,9 +29,10 @@ const SearchResult = () => {
   };
 
   useEffect(() => {
+    // products data based on search input
     productData();
     // eslint-disable-next-line
-  }, []);
+  }, [params.searchItem]);
 
   // const genders = ["male", "female"];
 

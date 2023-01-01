@@ -8,13 +8,13 @@ const Subcategory = ({ item }) => {
     <div>
       <div className="sub_category_wrapper_div">
         <div className="sub_category_wrapper">
-          <div className="sub_category_heading">{item?.heading}</div>
           <img
             src={item?.image}
             alt={item?.image}
             className="sub_category_image"
             onClick={() => navigate(`/category/sub/${item?.heading}`)}
           />
+        <div className="sub_category_heading">{item?.heading}</div>
         </div>
       </div>
     </div>

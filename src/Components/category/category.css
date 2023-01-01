@@ -1,13 +1,14 @@
 .c_category_wrapper_div {
-  max-width: 200px;
-  min-width: 200px;
   height: max-content;
   display: flex;
-  border-radius: 5px;
   align-items: center;
   justify-content: center;
   padding: 3px 0px;
-  background-color: rgb(233, 216, 67);
+  /* background-color: gradient(); */
+  background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
+  padding: 20px;
+  box-shadow: 0px 0px 3px 0px rgba(95, 95, 95, 0.46);  
+  box-sizing: border-box;
 }
 
 .c_category_wrapper_div:hover {
@@ -18,10 +19,11 @@
   height: 100%;
   width: 100%;
   color: white;
+  /* background-color: cadetblue; */
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 0px;
 }
 
@@ -30,8 +32,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: 500;
   color: black;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.category_mapper{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+justify-content: center;
+  gap: 20px;
+  /* overflow-x: auto; */
 }
 
 .category_image {
@@ -47,19 +65,38 @@
   margin-bottom: 1px;
 }
 
+::-webkit-scrollbar {
+  width: 2px;
+  height: 5px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  height: 3px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: rgb(154, 156, 156);
+/* outline: 1px solid rgb(66, 103, 141); */
+border-radius: 4px;
+cursor: pointer;
+}
+
 @media screen and (max-width: 400px) {
   .c_category_wrapper_div {
     min-width: 45vw;
     max-width: 45vw;
     height: max-content;
-    padding: 0px;
+    padding: 20px;
+    box-sizing: border-box;
     transition: none;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 0.5px solid rgb(221, 221, 221);
-    background-color: rgb(233, 216, 67);
+    background-color: #fff;
   }
 
   .c_category_wrapper_div:hover {
@@ -84,7 +121,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 500;
     color: black;
   }
 

@@ -4,6 +4,7 @@ import "./product.css";
 import { addProduct } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {API} from "../../api";
 
 const Product = ({ product }) => {
   const [added, setAdded] = useState(false);
@@ -15,7 +16,7 @@ const Product = ({ product }) => {
   const navigate = useNavigate();
 
   const handleDelete = async (id) => {
-    axios.delete(`https://s-mart-77.herokuapp.com/products/${id}`);
+    axios.delete(`${API}/products/${id}`);
   };
 
   return (
@@ -34,6 +35,7 @@ const Product = ({ product }) => {
           <span className="product_price_discount">
             ₹ {Math.round(product.price * 1.2)}
           </span>
+          <br />
           <span className="discountValue">(20% off)</span>
         </div>
       </div>

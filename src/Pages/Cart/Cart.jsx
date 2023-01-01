@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../redux/cart";
 import { useToast } from "@chakra-ui/react";
+import {API} from "../../api";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -18,11 +19,11 @@ const Cart = () => {
   // const handleBuy = async (total) => {
   //   const {
   //     data: { key },
-  //   } = await axios.get("https://s-mart-77.herokuapp.com/api/getkey");
+  //   } = await axios.get("http://localhost:8080/payment/getkey");
 
   //   const {
   //     data: { order },
-  //   } = await axios.post("https://s-mart-77.herokuapp.com/api/checkout", {
+  //   } = await axios.post("http://localhost:8080/api/checkout", {
   //     amount: total,
   //   });
 
@@ -34,7 +35,7 @@ const Cart = () => {
   //     description: "Test Transaction",
   //     image: "https://example.com/your_logo",
   //     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //     callback_url: "https://s-mart-77.herokuapp.com/api/paymentverification",
+  //     callback_url: "http://localhost:8080/api/paymentverification",
   //     prefill: {
   //       name: "Gaurav Kumar",
   //       email: "gaurav.kumar@example.com",
@@ -48,36 +49,57 @@ const Cart = () => {
   //   razor.open();
   // };
 
-  // const handleBuy = () => {
-  //   navigate("/order/checkout");
-  // };
-
   // creating order in DB
 
   const handleBuy = async () => {
-    console.log("order placed successfully ✅");
+    // console.log("order placed successfully ✅");
+
+    try {
     products.forEach(async (product) => {
       const data = {
         productDetail: product,
         orderTotal: total,
         deliveryAddress: currentUser.address,
-        user: currentUser,
+        user:currentUser,
         contactNo: currentUser.contactNo,
+        orderFor:product.merchantId
       };
       const createOrder = await axios.post(
-        "https://s-mart-77.herokuapp.com/api/order",
+        `${API}/api/order`,
         data
       );
-      console.log(createOrder.data);
+
+      if(createOrder.data.msg === "ok"){
+        toast({
+          description: "Order placed successfully ✅",
+          status: "info",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom",
+        }); 
+      }else{
+        toast({
+          description: "Failed to place order !",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
     });
-    dispatch(emptyCart());
+
+      dispatch(emptyCart());
+           
+  } catch (error) {
     toast({
-      description: "Order placed successfully ✅",
-      status: "info",
+      description: "Failed to place order",
+      status: "error",
       duration: 3000,
       isClosable: true,
       position: "bottom",
     });
+  }
+
   };
 
   const handle_Add_Address = () => {
@@ -88,8 +110,8 @@ const Cart = () => {
     <div>
       <div className="cart_page">
         <Navbar />
-        <div className="cart_left">
-          <div className="cart_container">
+        <div className="cart_container">
+          <div className="cart_left">
             {products?.map((product, index) => (
               <CartItem key={index} product={product} />
             ))}
@@ -103,10 +125,12 @@ const Cart = () => {
                 Empty Cart
               </button>
             )}
+
             {currentUser && (
-              <div>
+              <div className="address_details_container">
                 {products.length > 0 && (
                   <div className="address_details">
+                    Delivery For
                     <div>{currentUser?.name}</div>
                     Delivery Address
                     <div>{currentUser?.address}</div>
@@ -122,46 +146,55 @@ const Cart = () => {
                   <div className="orderBill">
                     <div className="bill">
                       <div className="bill_item">
-                        <span className="ordertotal_key">Order Total</span>
-                        <span className="ordertotal">₹ {total}</span>
+                        <span className="bill_item_key">Sub Total</span>
+                        <span className="bill_item_value">₹ {total}</span>
                       </div>
                       <div className="bill_item">
-                        <span className="shipping_charges ordertotal_key">
+                        <span className="bill_item_key">
                           Shipping Charges{" "}
                         </span>
-                        <span className="ordertotal">₹ 50</span>
+                        <span className="bill_item_value">₹ 50</span>
                       </div>
                       <div className="bill_item">
-                        <span className="order_total_key">
+                        <span className="bill_item_key">
                           Total order value
                         </span>
-                        <span className="orderValue order_total_value">
+                        <span className="bill_item_value">
                           ₹ {total + 50}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {currentUser ? (
-                    <button className="checkout" onClick={handleBuy}>
-                      Place Order
-                    </button>
-                  ) : (
-                    <button className="checkout" onClick={handle_Add_Address}>
-                      Add Address
-                    </button>
-                  )}
+                 
                 </>
               )}
             </div>
+            
+            {products.length > 0 && 
+            <div style={{width:"100%"}}>
+            {currentUser ? (
+              <button className="checkout" onClick={handleBuy}>
+                Place Order
+              </button>
+            ) : (
+              <button className="checkout" onClick={handle_Add_Address}>
+                Add Address
+              </button>
+            )}
+            </div>
+            }
           </div>
         </div>
+
+        {/* empty cart display */}
         {!products.length > 0 && (
           <div className="emptyCartDisplay_container">
             <div className="emptyCartDisplay">
               <img
                 src="https://shop.millenniumbooksource.com/static/images/cart1.png"
                 alt="cart_image"
+                className="cart_empty_image"
               />
               <button
                 variant="contained"

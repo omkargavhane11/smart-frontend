@@ -7,20 +7,21 @@ import { useSelector } from "react-redux";
 import { emptyCart } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user";
-import { closeFilter, toggleFilter } from "../../redux/helper";
+import { closeFilter, closeNavModal, openNavModal, toggleFilter, toggleNavModal } from "../../redux/helper";
 import NavSearch from "../../Components/navSearch/Navsearch";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = ({ searchInput }) => {
   const params = useParams();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [searchBoxOpen, setSearchBoxOpen] = useState(false);
 
   // redux
   const { quantity } = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user.currentUser);
   const isFilterOpen = useSelector((state) => state.helper.filterModalOpen);
+  const open = useSelector((state) => state.helper.navModalOpen);
 
   const dispatch = useDispatch();
 
@@ -40,9 +41,38 @@ const Navbar = ({ searchInput }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    setOpen(false);
-    navigate("/login");
+    // setOpen(false);
+    dispatch(closeNavModal())
+    if(user.userType === "Customer"){
+      navigate("/login");
+    }else{
+      navigate("/login-merchant")
+    }
   };
+
+  const handleSetSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleEnter = (e) => {
+    const button = document.getElementById("search_button");
+      if (e.key === "Enter") {
+          button.click();
+      }
+  }
+
+  document.addEventListener("click", (e) => {
+    console.log({id: e.target.id})
+    if(e.target.id !== "navbar_avatar"){
+        dispatch(closeNavModal())
+    }
+    e.stopPropagation()
+  })
+
+  const handleNavigate = (location) =>{
+    navigate(`/${location}`);
+    dispatch(closeNavModal());
+  }
 
   return (
     <div className="navbar-container">
@@ -53,15 +83,17 @@ const Navbar = ({ searchInput }) => {
           </p>
         </div>
         <div className="navbar_middle">
-          <SearchIcon />
           <input
             className="navbar_search"
             type="search"
             placeholder="Search..."
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSetSearch}
             value={search}
+            onKeyPress={handleEnter}
           />
-          <button
+          <SearchIcon />
+          {/* <button
+            id="search_button"
             className="nav_search_btn"
             onClick={() => {
               if (search.length) {
@@ -70,7 +102,7 @@ const Navbar = ({ searchInput }) => {
             }}
           >
             Search
-          </button>
+          </button> */}
         </div>
         <div className="navbar_right">
           {!searchBoxOpen ? (
@@ -114,7 +146,7 @@ const Navbar = ({ searchInput }) => {
             </div>
           )}
           {!isOrderPage ? (
-            <div className="orders" onClick={() => navigate("/orders")}>
+            <div className="orders" onClick={() => handleNavigate("orders")}>
               Orders
             </div>
           ) : (
@@ -123,7 +155,7 @@ const Navbar = ({ searchInput }) => {
           <div className="quantity_badge_div">
             <ShoppingCartIcon
               className="cart_icon"
-              onClick={() => navigate("/cart")}
+              onClick={() => handleNavigate("cart")}
             />
 
             {quantity > 0 && <span className="quantity_badge">{quantity}</span>}
@@ -136,25 +168,31 @@ const Navbar = ({ searchInput }) => {
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-vWL06qbKx_pfPr-bFrIjw1t7y5ogYgIiNITgPVmXcHS6DSN3T793hhNAWRngBnR3dec&usqp=CAU"
               alt="user"
               className="user_image"
-              onClick={() => setOpen(!open)}
+              onClick={()=> dispatch(toggleNavModal())}
+              id="navbar_avatar"
             />
             {open && (
               <div className="logout_modal">
-                {user?.isAdmin && (
+                {user?.userType === "Merchant" && (
                   <>
                     {/* <div className="modal_item">Dashboard</div> */}
                     <div
                       className="modal_item"
-                      onClick={() => navigate("/store")}
+                      onClick={() => handleNavigate("store")}
                     >
                       My Store
                     </div>
                   </>
                 )}
                 {/* <div className="modal_item">Profile</div> */}
-                {user?.isAdmin && (
-                  <div className="modal_item" onClick={() => navigate("/add")}>
+                {user?.userType === "Merchant" && (
+                  <div className="modal_item" onClick={() => handleNavigate("add")}>
                     Add new product
+                  </div>
+                )}
+                {user?.userType === "Delivery Partner" && (
+                  <div className="modal_item" onClick={() => handleNavigate("deliverypartner")}>
+                    Dashboard
                   </div>
                 )}
                 <div className="modal_item" onClick={emptyCartProducts}>
@@ -162,7 +200,7 @@ const Navbar = ({ searchInput }) => {
                 </div>
                 <div
                   className="modal_item orders_small_screen"
-                  onClick={() => navigate("/orders")}
+                  onClick={() => handleNavigate("orders")}
                 >
                   Orders
                 </div>
@@ -173,7 +211,7 @@ const Navbar = ({ searchInput }) => {
                 ) : (
                   <div
                     className="modal_item"
-                    onClick={() => navigate("/login")}
+                    onClick={() => handleNavigate("login")}
                   >
                     Login
                   </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./store.css";
 import { useSelector } from "react-redux";
+import {API} from '../../api';
 
 const Store = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,9 +15,10 @@ const Store = () => {
   async function getData() {
     try {
       const { data } = await axios.get(
-        "https://s-mart-77.herokuapp.com/dashboard"
+        `${API}/dashboard/${currentUser._id}`
       );
       setDetails(data);
+      console.log(data)
     } catch (error) {
       console.log(error.message);
     }
@@ -27,7 +29,7 @@ const Store = () => {
   }, []);
 
   useEffect(() => {
-    if (!currentUser) navigate("/");
+    if (!currentUser || currentUser.userType !== "Merchant") navigate("/login-merchant");
     // eslint-disable-next-line
   }, []);
 
@@ -44,9 +46,9 @@ const Store = () => {
           </div>
           <div className="d-item">
             <div className="key">Sales</div>
-            <div className="value">₹ {sales}</div>
+            <div className="value">₹ {sales?.length ? sales[0].sum : 0}</div>
           </div>
-          <div className="d-item" onClick={() => navigate("/admin/orders")}>
+          <div className="d-item" onClick={() => navigate("/manage-orders")}>
             <div className="key">Orders</div>
             <div className="value">{orders}</div>
           </div>

@@ -1,4 +1,4 @@
-import "./signup.css";
+import "./signupMerchant.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { useToast } from "@chakra-ui/react";
 import { CircularProgress } from "@mui/material";
 import {API} from "../../api";
 
-const Signup = () => {
+const SignupMerchant = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -14,6 +14,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [contactNo, setContactNo] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [user_type,setUser_type] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [isPass, setIsPass] = useState(false);
@@ -27,7 +29,8 @@ const Signup = () => {
       password,
       address,
       contactNo,
-      userType:"Customer"
+      businessName,
+      userType:user_type
     };
 
     if (
@@ -35,11 +38,13 @@ const Signup = () => {
       password === "" ||
       address === "" ||
       name === "" ||
-      contactNo === ""
+      contactNo === "" ||
+      businessName === "" || 
+      user_type === null
     ) {
       toast({
         title: "Error.",
-        description: "Please fill all fields to login",
+        description: "Please fill all fields to Signup",
         status: "warning",
         duration: 3000,
         isClosable: true,
@@ -49,16 +54,15 @@ const Signup = () => {
       try {
         setLoading(true);
         const { data } = await axios.post(
-          `${API}/user/register`,
+          `${API}/user/merchant/register`,
           payload
         );
 
         if (data.msg === "success") {
           setLoading(false);
-          navigate("/login");
-          toast({
-            title: "Success",
-            description: "Sign Up successfull !",
+          navigate("/login-merchant"); toast({
+            title: "Success.",
+            description: "Registered successfully !",
             status: "success",
             duration: 3000,
             isClosable: true,
@@ -81,6 +85,18 @@ const Signup = () => {
       }
     }
   };
+
+  const handle_radio_change = () =>{
+    const getValue = document.getElementsByClassName("radio_inputs");
+    // console.log(getValue)
+    for(let i=0;i<getValue.length;i++){
+      if(getValue[i].checked){
+          setUser_type(getValue[i].value)
+          console.log(getValue[i].value);
+      }
+    }
+
+  }
 
   const handleEnter = (e) => {
     const button = document.getElementById("login_btn");
@@ -145,6 +161,18 @@ const Signup = () => {
             />
         </div>
         <div className="input">
+          <label htmlFor="address">Business Name</label>
+          <input
+            type="text"
+            id="businessName"
+            name="businessName"
+            placeholder="Business name"
+            onChange={(e) => setBusinessName(e.target.value)}
+            className="login_input"
+            onKeyPress={handleEnter}
+          />
+        </div>
+        <div className="input">
           <label htmlFor="password">Password</label>
           <input
             type={!isPass ? "password" : "text"}
@@ -168,6 +196,31 @@ const Signup = () => {
           </label>
         </div>
 
+        <div className="input">
+          <label htmlFor="password">Register as :</label>
+          <div className="input_radio">
+          <input
+            type="radio"
+            value="Merchant"
+            name="user_type"
+            id="merchant"
+            className="radio_inputs"
+            onChange={handle_radio_change}
+            />
+            <label htmlFor="merchant">Merchant</label>
+          <input
+          type="radio"
+          value="Delivery Partner"
+          name="user_type"
+          id="delivery partner"
+          className="radio_inputs"
+          onChange={handle_radio_change}
+          />
+            <label htmlFor="delivery partner">Delivery partner</label>
+          </div>
+        </div>
+
+
         <button className="signupBtn" onClick={handleSignup}>
           {loading === true ? (
             <CircularProgress color="inherit" className="login_loader" />
@@ -188,4 +241,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupMerchant;

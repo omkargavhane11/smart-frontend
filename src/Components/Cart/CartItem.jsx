@@ -4,6 +4,7 @@ import "./cartItem.css";
 import { addProduct, removeProduct } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {API} from '../../api';
 
 const CartItem = ({ product }) => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const CartItem = ({ product }) => {
 
   const handleDelete = async (id) => {
     // dispatch(removeProduct(id));
-    axios.delete(`https://s-mart-77.herokuapp.com/products/${id}`);
+    axios.delete(`${API}/products/${id}`);
   };
 
   // console.log(product);

@@ -7,7 +7,7 @@ const userSlice = createSlice({
         isFetching: false,
         error: false,
         userAddress: null,
-        contactDetail: null
+        contactDetail: null,
     },
     reducers: {
         loginStart: (state) => {
